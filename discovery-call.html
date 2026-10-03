@@ -13,8 +13,19 @@
 <body>
   <header class="nav">
     <a class="brand" href="index.html">OCEAN</a>
-    <nav class="site-nav" aria-label="Main"><ul><li><a href="index.html">Home</a></li><li class="has-sub"><a href="about.html">Meet Ocean</a><ul class="submenu"><li><a href="about.html#about">About</a></li><li><a href="about.html#connect">Let’s connect</a></li></ul></li><li class="has-sub"><a href="healing.html">Healing &amp; Embodiment</a><ul class="submenu"><li><a href="healing.html#invitation">An invitation</a></li><li><a href="healing.html#expect">What to expect</a></li><li><a href="healing.html#offerings">Ways to work together</a></li></ul></li><li class="has-sub"><a href="consciousness.html">Consciousness</a><ul class="submenu"><li><a href="consciousness.html#inquiry">The inquiry</a></li><li><a href="consciousness.html#practices">Practices</a></li></ul></li><li class="has-sub"><a href="psychedelics.html">Psychedelics</a><ul class="submenu"><li><a href="psychedelics.html#why">Why I’m learning</a></li><li><a href="psychedelics.html#integration">Integration</a></li><li><a href="psychedelics.html#safety">Safety &amp; humility</a></li></ul></li><li class="has-sub"><a href="relationship.html">Relationships</a><ul class="submenu"><li><a href="relationship.html#presence">Presence</a></li><li><a href="relationship.html#practices">Practices</a></li></ul></li><li class="has-sub"><a href="podcast.html">Podcast</a><ul class="submenu"><li><a href="podcast.html#latest">Latest episode</a></li><li><a href="podcast.html#episodes">All episodes</a></li><li><a href="podcast.html#subscribe">Subscribe</a></li></ul></li><li class="nav-cta"><a href="discovery-call.html" aria-current="page">Free discovery call</a></li></ul></nav>
+    <nav class="site-nav" aria-label="Main">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li class="has-sub"><a href="about.html">Meet Ocean</a><ul class="submenu"><li><a href="about.html#about">About</a></li><li><a href="about.html#connect">Let’s connect</a></li></ul></li>
+        <li class="has-sub"><a href="healing.html">Healing &amp; Embodiment</a><ul class="submenu"><li><a href="healing.html#invitation">An invitation</a></li><li><a href="healing.html#expect">What to expect</a></li><li><a href="healing.html#offerings">Ways to work together</a></li></ul></li>
+        <li class="has-sub"><a href="consciousness.html">Consciousness</a><ul class="submenu"><li><a href="consciousness.html#inquiry">The inquiry</a></li><li><a href="consciousness.html#practices">Practices</a></li></ul></li>
+        <li class="has-sub"><a href="psychedelics.html">Psychedelics</a><ul class="submenu"><li><a href="psychedelics.html#why">Why I’m learning</a></li><li><a href="psychedelics.html#integration">Integration</a></li><li><a href="psychedelics.html#safety">Safety &amp; humility</a></li></ul></li>
+        <li class="has-sub"><a href="relationship.html">Relationships</a><ul class="submenu"><li><a href="relationship.html#presence">Presence</a></li><li><a href="relationship.html#practices">Practices</a></li></ul></li>
+        <li class="nav-cta"><a href="discovery-call.html" aria-current="page">Free discovery call</a></li>
+      </ul>
+    </nav>
   </header>
+
   <main id="top">
     <section class="hero page-hero pos-b hero-discovery">
       <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
@@ -50,14 +61,16 @@
       </div>
     </section>
 
+    <!-- CALENDAR BOOKING SECTION -->
     <section id="book" class="section alt">
       <p class="eyebrow">CHOOSE A TIME</p>
       <h2 class="md">Book your call.</h2>
-      <!-- To connect your calendar: paste your booking page link (Google Calendar appointment schedule, Cal.com, or Calendly) into data-booking-url below. -->
+      
+      <!-- PASTE YOUR EMBED LINK IN data-booking-url BELOW -->
       <div id="booking" class="booking" data-booking-url="">
         <div class="booking-empty">
-          <h3>Booking opens soon.</h3>
-          <p>In the meantime, send me a note and we’ll find a time that works.</p>
+          <h3>Select a time below</h3>
+          <p>If you prefer to email directly or have questions before booking, feel free to reach out.</p>
           <a class="button dark solid" href="mailto:hello@yourdomain.com?subject=Free%20discovery%20call">Email to book</a>
         </div>
       </div>
@@ -67,19 +80,52 @@
     <section class="section faq">
       <p class="eyebrow">GOOD TO KNOW</p>
       <h2 class="md">Questions.</h2>
-      <details><summary>Is it really free?</summary><p>Yes. The discovery call is free and carries no obligation.</p></details>
-      <details><summary>Is this therapy?</summary><p>No. It is a conversation to see whether working together is a good fit. It is not therapy, and it is not medical or psychological care.</p></details>
-      <details><summary>How do we meet?</summary><p><em>[Say whether it’s a video call, phone call, or in person, and what link or details people receive.]</em></p></details>
-      <details><summary>What if I need to reschedule?</summary><p>Your confirmation email has a link to change or cancel your booking.</p></details>
+      <details><summary>Is it really free?</summary><p>Yes. The discovery call is completely free and carries no obligation.</p></details>
+      <details><summary>Is this therapy?</summary><p>No. It is a conversation to see whether working together is a good fit. It is supportive and educational, not therapy or clinical medical care.</p></details>
+      <details><summary>How do we meet?</summary><p>Calls take place over Google Meet or Zoom. You will receive a video link automatically upon booking.</p></details>
     </section>
-
   </main>
+
   <section class="next-page"><div><p class="eyebrow">EXPLORE</p><a href="index.html">Back to home →</a></div></section>
+
   <footer>
     <div>OCEAN</div>
     <div>Science · Healing · Consciousness</div>
     <div>© 2026</div>
   </footer>
-  <script src="main.js?v=3"></script>
+
+  <script>
+    (function () {
+      // Hero video controller
+      var hero = document.querySelector('.hero');
+      var video = hero ? hero.querySelector('.hero-video') : null;
+      var btn = hero ? hero.querySelector('.video-toggle') : null;
+      if (video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        function mark() { hero.classList.add('has-video'); }
+        video.addEventListener('playing', mark);
+        if (!video.paused && video.readyState >= 3) mark();
+        if (btn) {
+          btn.addEventListener('click', function () {
+            if (video.paused) { video.play(); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause background video'); }
+            else { video.pause(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Play background video'); }
+          });
+        }
+      }
+
+      // Calendar embed loader
+      var bookingSlot = document.getElementById('booking');
+      var openLink = document.getElementById('booking-open');
+      if (bookingSlot) {
+        var url = bookingSlot.getAttribute('data-booking-url');
+        if (url && url.trim() !== '') {
+          bookingSlot.innerHTML = '<iframe src="' + url + '" style="width:100%;height:650px;border:0;border-radius:12px;" loading="lazy"></iframe>';
+          if (openLink) {
+            openLink.href = url;
+            openLink.hidden = false;
+          }
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

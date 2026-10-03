@@ -163,3 +163,16 @@ a:focus-visible, button:focus-visible { outline: 2px solid #e5d8c9; outline-offs
 .video-toggle { display: none; position: absolute; z-index: 2; right: 5vw; bottom: 4vh; padding: 9px 18px; background: rgba(8,35,39,.35); color: #fff; border: 1px solid rgba(255,255,255,.7); border-radius: 100px; font: inherit; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; cursor: pointer; }
 .hero.has-video .video-toggle { display: block; }
 @media (prefers-reduced-motion: reduce) { .hero-video, .video-toggle { display: none !important; } }
+
+/* ---------- Portrait ---------- */
+.about-grid { display: grid; grid-template-columns: minmax(260px, 380px) 1fr; gap: 7vw; align-items: start; }
+.about-grid.no-photo { display: block; }
+.portrait { margin: 0; }
+.portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 25%; border-radius: 190px 190px 4px 4px; background: #dce3d9; }
+@media (max-width: 760px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .portrait { max-width: 320px; }
+}
+
+/* ---------- Readable nav over bright skies ---------- */
+.nav::before { content: ""; position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 170px; background: linear-gradient(180deg, rgba(8,35,39,.6), rgba(8,35,39,0)); pointer-events: none; }

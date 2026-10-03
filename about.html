@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ocean.css?v=2" />
+  <link rel="stylesheet" href="ocean.css?v=3" />
 </head>
 <body>
   <header class="nav">
@@ -17,6 +17,13 @@
   </header>
   <main id="top">
     <section class="hero page-hero pos-a hero-about">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="media/hero-about.webm" type="video/webm">
+        <source src="media/hero-about.mp4" type="video/mp4">
+        <source src="media/hero-about.mov" type="video/quicktime">
+      </video>
+      <div class="hero-overlay"></div>
+      <button class="video-toggle" type="button" aria-label="Pause background video">Pause</button>
       <div class="hero-content">
         <p class="eyebrow">MEET OCEAN</p>
         <h1>Curiosity<br>brought me here.</h1>
@@ -35,7 +42,6 @@
           <p class="lead">My path has moved through science, research, technology, meditation, embodiment, and the deeply human work of healing.</p>
           <p>I’m interested in what becomes possible when we meet ourselves with more curiosity, compassion, presence, and honesty, and when we let different ways of knowing speak to one another.</p>
           <p>A scientific mind and a feeling body are not opposites. I try to hold both: rigorous about what we know, humble about what we don’t.</p>
-          <p><em>[Add your own story here: where you studied, what you’ve worked on, what changed your direction.]</em></p>
         </div>
       </div>
     </section>
@@ -66,5 +72,20 @@
     <div>Science · Healing · Consciousness</div>
     <div>© 2026</div>
   </footer>
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero');
+      var video = hero.querySelector('.hero-video');
+      var btn = hero.querySelector('.video-toggle');
+      if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      function mark() { hero.classList.add('has-video'); }
+      video.addEventListener('playing', mark);
+      if (!video.paused && video.readyState >= 3) mark();
+      btn.addEventListener('click', function () {
+        if (video.paused) { video.play(); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause background video'); }
+        else { video.pause(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Play background video'); }
+      });
+    })();
+  </script>
 </body>
 </html>

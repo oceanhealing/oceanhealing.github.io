@@ -176,3 +176,17 @@ a:focus-visible, button:focus-visible { outline: 2px solid #e5d8c9; outline-offs
 
 /* ---------- Readable nav over bright skies ---------- */
 .nav::before { content: ""; position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 170px; background: linear-gradient(180deg, rgba(8,35,39,.6), rgba(8,35,39,0)); pointer-events: none; }
+
+/* ---------- Per-page hero photos ----------
+   Drop media/hero-<page>.jpg in place and it replaces the ocean photo for that page.
+   If a file is missing, the ocean photo shows instead. */
+:root { --ocean-photo: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85"); }
+.hero.hero-home { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-home.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.hero-about { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-about.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.hero-healing { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-healing.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.hero-consciousness { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-consciousness.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.hero-psychedelics { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-psychedelics.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.hero-relationship { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-relationship.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.page-hero.pos-a { background-position: center, center, 30% 60%; }
+.hero.page-hero.pos-b { background-position: center, center, 70% 40%; }
+.hero.page-hero.pos-c { background-position: center, center, 50% 80%; }

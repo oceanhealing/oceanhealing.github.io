@@ -12,15 +12,10 @@
 </head>
 <body>
   <header class="nav">
-    <a class="brand" href="#top">OCEAN</a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#explore">Explore</a>
-      <a href="#writing">Writing</a>
-      <a href="#connect">Connect</a>
-    </nav>
+    <a class="brand" href="index.html">OCEAN</a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+    <nav class="site-nav" id="site-nav" aria-label="Main"><ul><li><a href="index.html" aria-current="page">Home</a></li><li class="has-sub"><a href="about.html">Meet Ocean</a><ul class="submenu"><li><a href="about.html#about">About</a></li><li><a href="about.html#connect">Let’s connect</a></li></ul></li><li class="has-sub"><a href="healing.html">Healing &amp; Embodiment</a><ul class="submenu"><li><a href="healing.html#invitation">An invitation</a></li><li><a href="healing.html#expect">What to expect</a></li><li><a href="healing.html#offerings">Ways to work together</a></li></ul></li><li class="has-sub"><a href="consciousness.html">Consciousness</a><ul class="submenu"><li><a href="consciousness.html#inquiry">The inquiry</a></li><li><a href="consciousness.html#practices">Practices</a></li></ul></li><li class="has-sub"><a href="psychedelics.html">Psychedelics &amp; Science</a><ul class="submenu"><li><a href="psychedelics.html#why">Why I’m learning</a></li><li><a href="psychedelics.html#integration">Integration</a></li><li><a href="psychedelics.html#safety">Safety &amp; humility</a></li></ul></li><li class="has-sub"><a href="relationship.html">Relational Intelligence</a><ul class="submenu"><li><a href="relationship.html#presence">Presence</a></li><li><a href="relationship.html#practices">Practices</a></li></ul></li></ul></nav>
   </header>
-
   <main id="top">
     <section class="hero">
       <div class="hero-overlay"></div>
@@ -31,7 +26,7 @@
           Exploring the spaces where science, consciousness, embodiment,
           and human connection meet.
         </p>
-        <a class="button" href="#about">Enter the space ↓</a>
+        <a class="button" href="healing.html">Start your journey</a>
       </div>
     </section>
 
@@ -65,7 +60,7 @@
         </article>
         <article class="card">
           <div class="card-number">02</div>
-          <h3>Healing & Embodiment</h3>
+          <h3>Healing &amp; Embodiment</h3>
           <p>Exploring relational intelligence, the body, nervous-system awareness, and compassionate presence.</p>
         </article>
         <article class="card">
@@ -88,6 +83,19 @@
       </div>
     </section>
 
+
+    <section class="section pale">
+      <p class="eyebrow">WHERE TO GO NEXT</p>
+      <h2 class="md">Choose a doorway.</h2>
+      <div class="pagelinks">
+        <a href="about.html"><span class="card-number">ABOUT</span><h3>Meet Ocean</h3><p>The path that led here, and what I’m listening for.</p></a>
+        <a href="healing.html"><span class="card-number">BODY</span><h3>Healing &amp; Embodiment</h3><p>Nervous-system awareness, presence, and ways to work together.</p></a>
+        <a href="consciousness.html"><span class="card-number">MIND</span><h3>Consciousness</h3><p>Awareness, meaning, and the mystery of being human.</p></a>
+        <a href="psychedelics.html"><span class="card-number">SCIENCE</span><h3>Psychedelics &amp; Science</h3><p>Medicines, altered states, and integration — with humility.</p></a>
+        <a href="relationship.html"><span class="card-number">CONNECTION</span><h3>Relational Intelligence</h3><p>The intelligence that lives between us.</p></a>
+      </div>
+    </section>
+
     <section id="writing" class="writing section">
       <p class="eyebrow">FROM THE JOURNAL</p>
       <h2>Questions I’m living into.</h2>
@@ -96,19 +104,19 @@
           <p class="post-tag">CONSCIOUSNESS</p>
           <h3>What happens when we become curious about ourselves?</h3>
           <p>A place for reflections on awareness, identity, and the stories we carry.</p>
-          <a href="#" class="text-link">Read soon →</a>
+          <span class="text-link">Read soon</span>
         </article>
         <article>
           <p class="post-tag">PSYCHEDELICS</p>
           <h3>Medicine, meaning, and the human experience</h3>
           <p>Notes from an ongoing journey of learning — grounded in science and humility.</p>
-          <a href="#" class="text-link">Read soon →</a>
+          <span class="text-link">Read soon</span>
         </article>
         <article>
           <p class="post-tag">RELATIONSHIP</p>
           <h3>The intelligence between us</h3>
           <p>Exploring presence, vulnerability, connection, and relational intelligence.</p>
-          <a href="#" class="text-link">Read soon →</a>
+          <span class="text-link">Read soon</span>
         </article>
       </div>
     </section>
@@ -122,12 +130,14 @@
       </p>
       <a class="button dark" href="mailto:hello@yourdomain.com">Say hello</a>
     </section>
+  
   </main>
-
+  
   <footer>
     <div>OCEAN</div>
     <div>Science · Healing · Consciousness</div>
     <div>© 2026</div>
   </footer>
+  <script src="main.js"></script>
 </body>
 </html>

@@ -17,7 +17,12 @@
   </header>
   <main id="top">
     <section class="hero">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="media/ocean-loop.webm" type="video/webm">
+        <source src="media/ocean-loop.mp4" type="video/mp4">
+      </video>
       <div class="hero-overlay"></div>
+      <button class="video-toggle" type="button" aria-label="Pause background video">Pause</button>
       <div class="hero-content">
         <p class="eyebrow">SCIENCE · HEALING · CONSCIOUSNESS</p>
         <h1>Making space<br>for becoming.</h1>
@@ -138,5 +143,20 @@
     <div>Science · Healing · Consciousness</div>
     <div>© 2026</div>
   </footer>
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero');
+      var video = hero.querySelector('.hero-video');
+      var btn = hero.querySelector('.video-toggle');
+      if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      function mark() { hero.classList.add('has-video'); }
+      video.addEventListener('playing', mark);
+      if (!video.paused && video.readyState >= 3) mark();
+      btn.addEventListener('click', function () {
+        if (video.paused) { video.play(); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause background video'); }
+        else { video.pause(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Play background video'); }
+      });
+    })();
+  </script>
 </body>
 </html>

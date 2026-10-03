@@ -2,132 +2,108 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ocean — exploring the spaces where science, consciousness, healing, and human connection meet." />
-  <title>Ocean — Science · Healing · Consciousness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="description" content="Ocean — a space for curiosity, healing and becoming." />
+  <title>Ocean — a space for curiosity, healing & becoming</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
+<body class="dark">
+  <canvas id="sea" aria-hidden="true"></canvas>
+
   <header class="nav">
     <a class="brand" href="#top">OCEAN</a>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#explore">Explore</a>
-      <a href="#writing">Writing</a>
-      <a href="#connect">Connect</a>
-    </nav>
+    <button class="pause-btn" id="openBreath" type="button">Pause</button>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="hero-overlay"></div>
-      <div class="hero-content">
-        <p class="eyebrow">SCIENCE · HEALING · CONSCIOUSNESS</p>
-        <h1>Making space<br>for becoming.</h1>
-        <p class="hero-copy">
-          Exploring the spaces where science, consciousness, embodiment,
-          and human connection meet.
-        </p>
-        <a class="button" href="#about">Enter the space ↓</a>
-      </div>
+  <nav class="journey" aria-label="Journey">
+    <a href="#top" data-s="top"><span>Enter</span></a>
+    <a href="#explore" data-s="explore"><span>Explore</span></a>
+    <a href="#practice" data-s="practice"><span>Experience</span></a>
+    <a href="#writing" data-s="writing"><span>Reflect</span></a>
+    <a href="#connect" data-s="connect"><span>Connect</span></a>
+  </nav>
+
+  <main>
+    <section id="top" class="hero">
+      <h1>Making space<br>for becoming.</h1>
+      <p class="lede">A space for curiosity, healing and becoming — where science, consciousness, embodiment and human connection meet.</p>
+      <a class="button" href="#explore">Go deeper ↓</a>
     </section>
 
-    <section id="about" class="intro section">
-      <p class="eyebrow">A LITTLE ABOUT ME</p>
+    <section id="about" class="section">
       <h2>Curiosity brought me here.</h2>
       <div class="two-col">
-        <p>
-          I’m Ocean. My path has moved through science, research, technology,
-          meditation, embodiment, and the deeply human work of healing.
-        </p>
-        <p>
-          I’m interested in what becomes possible when we meet ourselves with
-          more curiosity, compassion, presence, and honesty — and when we let
-          different ways of knowing speak to one another.
-        </p>
+        <p>I’m Ocean. My path has moved through science, research, technology, meditation, embodiment, and the deeply human work of healing.</p>
+        <p>I’m interested in what becomes possible when we meet ourselves with more curiosity, compassion, presence, and honesty — and when we let different ways of knowing speak to one another.</p>
       </div>
     </section>
 
-    <section id="explore" class="explore section">
-      <div class="section-heading">
-        <p class="eyebrow">WHAT I’M EXPLORING</p>
-        <h2>Different waters.<br>One deeper inquiry.</h2>
+    <section id="explore" class="section">
+      <h2>Different waters.<br>One deeper inquiry.</h2>
+      <p class="hint">Choose a point of light.</p>
+      <div class="map" id="map">
+        <svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <g stroke="currentColor" fill="none" vector-effect="non-scaling-stroke">
+            <path d="M50 50 L22 28 M50 50 L72 22 M50 50 L28 76 M50 50 L78 68 M22 28 L72 22 L78 68 L28 76 Z" vector-effect="non-scaling-stroke"/>
+          </g>
+        </svg>
+        <span class="core">Ocean</span>
+        <button class="node" style="--x:22%;--y:28%" data-i="0" aria-pressed="false">Consciousness</button>
+        <button class="node" style="--x:72%;--y:22%" data-i="1" aria-pressed="false">Healing &amp; Embodiment</button>
+        <button class="node" style="--x:28%;--y:76%" data-i="2" aria-pressed="false">Psychedelics</button>
+        <button class="node" style="--x:78%;--y:68%" data-i="3" aria-pressed="false">Science &amp; Technology</button>
       </div>
-
-      <div class="cards">
-        <article class="card">
-          <div class="card-number">01</div>
-          <h3>Consciousness</h3>
-          <p>Curiosity about awareness, meaning, presence, and the mystery of being human.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">02</div>
-          <h3>Healing & Embodiment</h3>
-          <p>Exploring relational intelligence, the body, nervous-system awareness, and compassionate presence.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">03</div>
-          <h3>Psychedelics</h3>
-          <p>Learning about psychedelic medicines, altered states, integration, and the science surrounding them.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">04</div>
-          <h3>Science & Technology</h3>
-          <p>Bringing a scientific mind to questions of consciousness, human experience, and emerging technologies.</p>
-        </article>
-      </div>
+      <p class="map-text" id="mapText" aria-live="polite">Each of these is a different current in the same water.</p>
     </section>
 
-    <section class="quote">
-      <div class="quote-inner">
-        <span>“</span>
-        <blockquote>Perhaps healing is not becoming someone new,<br>but becoming more fully who we already are.</blockquote>
-      </div>
+    <section id="practice" class="section practice">
+      <h2>Take a breath<br>before going further.</h2>
+      <p class="lede">A sixty-second pause. Nothing to achieve — just a few slow breaths.</p>
+      <button class="button" id="openBreath2" type="button">Begin the pause</button>
     </section>
 
-    <section id="writing" class="writing section">
-      <p class="eyebrow">FROM THE JOURNAL</p>
+    <section class="quote" id="quote">
+      <blockquote id="quoteText">Perhaps healing is not becoming someone new, but becoming more fully who we already are.</blockquote>
+    </section>
+
+    <section id="writing" class="section">
       <h2>Questions I’m living into.</h2>
+      <div class="filters" role="group" aria-label="Filter journal">
+        <button class="on" data-f="all">All</button>
+        <button data-f="Consciousness">Consciousness</button>
+        <button data-f="Psychedelics">Psychedelics</button>
+        <button data-f="Embodiment">Embodiment</button>
+        <button data-f="Relationships">Relationships</button>
+        <button data-f="Science">Science</button>
+      </div>
       <div class="posts">
-        <article>
-          <p class="post-tag">CONSCIOUSNESS</p>
-          <h3>What happens when we become curious about ourselves?</h3>
-          <p>A place for reflections on awareness, identity, and the stories we carry.</p>
-          <a href="#" class="text-link">Read soon →</a>
-        </article>
-        <article>
-          <p class="post-tag">PSYCHEDELICS</p>
-          <h3>Medicine, meaning, and the human experience</h3>
-          <p>Notes from an ongoing journey of learning — grounded in science and humility.</p>
-          <a href="#" class="text-link">Read soon →</a>
-        </article>
-        <article>
-          <p class="post-tag">RELATIONSHIP</p>
-          <h3>The intelligence between us</h3>
-          <p>Exploring presence, vulnerability, connection, and relational intelligence.</p>
-          <a href="#" class="text-link">Read soon →</a>
-        </article>
+        <article data-c="Consciousness"><p class="tag">Consciousness</p><h3>What happens when we become curious about ourselves?</h3><p>Reflections on awareness, identity, and the stories we carry.</p><a href="#" class="text-link">Read soon</a></article>
+        <article data-c="Psychedelics"><p class="tag">Psychedelics</p><h3>Medicine, meaning, and the human experience</h3><p>Notes from an ongoing journey of learning — grounded in science and humility.</p><a href="#" class="text-link">Read soon</a></article>
+        <article data-c="Relationships"><p class="tag">Relationships</p><h3>The intelligence between us</h3><p>Exploring presence, vulnerability, connection, and relational intelligence.</p><a href="#" class="text-link">Read soon</a></article>
+        <article data-c="Embodiment"><p class="tag">Embodiment</p><h3>What the body knows before we do</h3><p>On the nervous system, sensation, and listening beneath the thinking.</p><a href="#" class="text-link">Read soon</a></article>
+        <article data-c="Science"><p class="tag">Science</p><h3>Studying the mind with humility</h3><p>What research can tell us about experience — and what it can’t yet.</p><a href="#" class="text-link">Read soon</a></article>
       </div>
     </section>
 
-    <section id="connect" class="connect section">
-      <p class="eyebrow">LET’S CONNECT</p>
+    <section id="connect" class="section connect">
       <h2>Stay curious.<br>Stay human.</h2>
-      <p>
-        This space is still becoming. If something here resonates,
-        I’d love to hear from you.
-      </p>
-      <a class="button dark" href="mailto:hello@yourdomain.com">Say hello</a>
+      <p class="lede">This space is still becoming. If something here resonates, I’d love to hear from you.</p>
+      <a class="button" href="mailto:hello@yourdomain.com">Say hello</a>
     </section>
   </main>
 
-  <footer>
-    <div>OCEAN</div>
-    <div>Science · Healing · Consciousness</div>
-    <div>© 2026</div>
-  </footer>
+  <footer><div>OCEAN</div><div>Science · Healing · Consciousness</div><div>© 2026</div></footer>
+
+  <div class="breath" id="breath" role="dialog" aria-modal="true" aria-label="One-minute pause" hidden>
+    <div class="orb" id="orb"></div>
+    <p class="cue" id="cue">Breathe in</p>
+    <p class="count" id="count">60</p>
+    <button class="button" id="closeBreath" type="button">End pause</button>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

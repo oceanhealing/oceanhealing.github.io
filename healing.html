@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ocean.css?v=2" />
+  <link rel="stylesheet" href="ocean.css?v=3" />
 </head>
 <body>
   <header class="nav">
@@ -17,6 +17,13 @@
   </header>
   <main id="top">
     <section class="hero page-hero pos-b hero-healing">
+      <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+        <source src="media/hero-healing.webm" type="video/webm">
+        <source src="media/hero-healing.mp4" type="video/mp4">
+        <source src="media/hero-healing.mov" type="video/quicktime">
+      </video>
+      <div class="hero-overlay"></div>
+      <button class="video-toggle" type="button" aria-label="Pause background video">Pause</button>
       <div class="hero-content">
         <p class="eyebrow">HEALING &amp; EMBODIMENT</p>
         <h1>Come back<br>to the body.</h1>
@@ -48,9 +55,9 @@
       <p class="eyebrow">WAYS TO WORK TOGETHER</p>
       <h2 class="md">Offerings.</h2>
       <div class="offerings">
-        <div class="offering"><h3>One-to-one sessions</h3><p>Individual time for exploration, grounding, and integration. <em>[Describe format, length, and location.]</em></p><span class="post-tag">COMING SOON</span></div>
-        <div class="offering"><h3>Group experiences</h3><p>Shared practice in a small circle. <em>[Describe format and schedule.]</em></p><span class="post-tag">COMING SOON</span></div>
-        <div class="offering"><h3>Guided practices</h3><p>Short audio or written practices you can return to on your own. <em>[Link when ready.]</em></p><span class="post-tag">COMING SOON</span></div>
+        <div class="offering"><h3>One-to-one sessions</h3><p>Individual time for exploration, grounding, and integration.</p><span class="post-tag">COMING SOON</span></div>
+        <div class="offering"><h3>Group experiences</h3><p>Shared practice in a small circle.</p><span class="post-tag">COMING SOON</span></div>
+        <div class="offering"><h3>Guided practices</h3><p>Short audio or written practices you can return to on your own.</p><span class="post-tag">COMING SOON</span></div>
       </div>
       <p class="note">This work is supportive and educational. It is not a substitute for medical or psychological care.</p>
     </section>
@@ -68,5 +75,20 @@
     <div>Science · Healing · Consciousness</div>
     <div>© 2026</div>
   </footer>
+  <script>
+    (function () {
+      var hero = document.querySelector('.hero');
+      var video = hero.querySelector('.hero-video');
+      var btn = hero.querySelector('.video-toggle');
+      if (!video || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      function mark() { hero.classList.add('has-video'); }
+      video.addEventListener('playing', mark);
+      if (!video.paused && video.readyState >= 3) mark();
+      btn.addEventListener('click', function () {
+        if (video.paused) { video.play(); btn.textContent = 'Pause'; btn.setAttribute('aria-label', 'Pause background video'); }
+        else { video.pause(); btn.textContent = 'Play'; btn.setAttribute('aria-label', 'Play background video'); }
+      });
+    })();
+  </script>
 </body>
 </html>

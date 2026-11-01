@@ -17,4 +17,85 @@
 .post-foot { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
 .post a.text-link, .post-foot a { border-bottom: 1px solid; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; color: inherit; }
 @media (prefers-reduced-motion: reduce) { .blog-card { transition: none; } .blog-card:hover { transform: none; } }
+
+
+/* OCEAN JOURNAL + GRAPHIC POLISH — V2 */
+:root {
+  --ocean-ink: #153b3d;
+  --ocean-deep: #0d3034;
+  --ocean-sea: #286c70;
+  --ocean-mist: #dce8e2;
+  --ocean-sand: #f4efe6;
+  --ocean-gold: #c6a878;
+}
+body { background-image: radial-gradient(ellipse at 8% 18%, rgba(201,218,207,.26), transparent 38%); }
+.hero {
+  isolation: isolate;
+  overflow: hidden;
+  background-color: #17484d;
+  background-image:
+    linear-gradient(180deg, rgba(7,35,39,.10) 0%, rgba(7,35,39,.12) 38%, rgba(7,35,39,.76) 100%),
+    url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85");
+  background-position: center;
+  background-size: cover;
+}
+.hero::before {
+  content: ""; position: absolute; z-index: -1; inset: auto -8% -15% -8%; height: 42%;
+  border: 1px solid rgba(239,231,211,.42); border-radius: 50% 50% 0 0 / 24% 24% 0 0;
+  box-shadow: 0 -18px 0 -17px rgba(239,231,211,.35), 0 -38px 0 -37px rgba(239,231,211,.25);
+  pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute; z-index: -1; width: min(36vw,460px); aspect-ratio: 1;
+  right: 5vw; top: 15%; border: 1px solid rgba(245,235,210,.25); border-radius: 50%;
+  box-shadow: 0 0 0 16px rgba(245,235,210,.035), 0 0 0 34px rgba(245,235,210,.025);
+  pointer-events: none;
+}
+.hero-content { text-shadow: 0 2px 22px rgba(0,0,0,.18); }
+.hero h1 { max-width: 900px; text-wrap: balance; }
+.button, .button.dark { transition: transform .25s ease, background .25s ease, border-color .25s ease; }
+.button:hover, .button.dark:hover { transform: translateY(-2px); }
+.section-heading, .journal-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; }
+.journal-heading { max-width: 1120px; margin: 0 auto 38px; }
+.journal-heading h2 { margin-bottom: 14px; }
+.journal-intro { max-width: 620px; font-size: 16px; opacity:.78; margin:0; }
+.journal-mark { display:grid; place-items:center; width:74px; height:74px; flex:0 0 74px; border:1px solid rgba(198,168,120,.8); border-radius:50%; color:#9c8057; font-size:34px; transform:rotate(-12deg); }
+.editorial-journal { position:relative; overflow:hidden; background:linear-gradient(135deg,#e8e2d5 0%,#f7f2e9 54%,#dce7df 100%); }
+.editorial-journal::after { content:""; position:absolute; right:-130px; bottom:-230px; width:440px; height:440px; border:1px solid rgba(38,108,112,.18); border-radius:50%; box-shadow:0 0 0 22px rgba(38,108,112,.035),0 0 0 48px rgba(38,108,112,.025); pointer-events:none; }
+.journal-grid { position:relative; z-index:1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; max-width:1120px; margin:0 auto; }
+.blog-card { display:flex; flex-direction:column; min-width:0; overflow:hidden; border:1px solid rgba(21,59,61,.10); border-radius:5px 5px 22px 5px; background:rgba(255,252,245,.78); box-shadow:0 12px 35px rgba(28,55,49,.07); transition:transform .3s ease,box-shadow .3s ease; }
+.blog-card:hover { transform:translateY(-6px); box-shadow:0 18px 42px rgba(28,55,49,.13); }
+.blog-art { height:155px; position:relative; overflow:hidden; display:flex; align-items:flex-end; padding:18px 22px; color:#fff; background:linear-gradient(135deg,#174b51,#75a8a0); }
+.blog-art::before,.blog-art::after { content:""; position:absolute; border:1px solid rgba(255,255,255,.42); border-radius:50%; }
+.blog-art::before { width:190px;height:190px;right:-26px;top:-80px;box-shadow:0 0 0 14px rgba(255,255,255,.07),0 0 0 30px rgba(255,255,255,.045); }
+.blog-art::after { width:95px;height:95px;left:22px;top:24px;border-color:rgba(255,255,255,.26); }
+.blog-art span { position:relative; z-index:1; font-family:"Cormorant Garamond",serif; font-size:27px; font-style:italic; text-transform:capitalize; text-shadow:0 2px 14px rgba(0,0,0,.22); }
+.blog-art-1 { background:linear-gradient(135deg,#8a7558,#d5b98b 52%,#668b7c); }
+.blog-art-2 { background:linear-gradient(135deg,#143d45,#3c7774 55%,#9eb7a4); }
+.blog-art-3 { background:linear-gradient(135deg,#445b4d,#a5a17c 55%,#d5b78c); }
+.blog-card .blog-meta,.blog-card h3,.blog-card p,.blog-card .blog-more { margin-left:23px; margin-right:23px; }
+.blog-card .blog-meta { margin-top:20px; }
+.blog-card h3 { margin-top:10px; margin-bottom:10px; font-size:29px; color:var(--ocean-ink); }
+.blog-card p { font-size:14px; line-height:1.7; margin-bottom:22px; }
+.blog-card .blog-more { margin-top:auto; margin-bottom:22px; color:#397276; font-weight:600; }
+.blog-empty { grid-column:1/-1; padding:34px; border:1px dashed rgba(21,59,61,.25); border-radius:20px; text-align:center; background:rgba(255,255,255,.35); }
+.blog-empty h3 { font:400 30px "Cormorant Garamond",serif; margin:8px 0; }
+.blog-empty p { margin:0; font-size:14px; }
+.empty-mark { color:#a88a5f; font-size:28px; }
+.journal-note { max-width:1120px; margin:28px auto 0; font-size:13px; opacity:.76; }
+.journal-note a { border-bottom:1px solid currentColor; }
+.blog-list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+.post { background:rgba(255,252,245,.6); border-radius:0 0 28px 28px; }
+.post h1 { color:var(--ocean-ink); }
+.post-body p { color:#354f4b; }
+@media(max-width:760px) {
+ .journal-heading { align-items:flex-start; }
+ .journal-mark { width:52px;height:52px;flex-basis:52px;font-size:25px; }
+ .journal-grid,.blog-list { grid-template-columns:1fr; }
+ .blog-art { height:130px; }
+ .hero::after { width:60vw; right:-18vw; top:20%; }
+}
+@media(prefers-reduced-motion:reduce) {
+ .button,.button.dark,.blog-card { transition:none; }
+ .button:hover,.button.dark:hover,.blog-card:hover { transform:none; }
 }

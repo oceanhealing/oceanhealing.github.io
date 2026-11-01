@@ -22,3 +22,7 @@ index.html, about.html, podcast.html → `"all"` (add `data-limit="3"` to show o
 
 ## 3. Write a new post
 Open `posts.js`, copy a `{ ... }` block to the top of the list, change the id (no spaces), date, title, summary and paragraphs. A post can appear on several pages by listing several topics. Commit — it appears on every matching page.
+
+
+## Journal sections
+See `JOURNAL-GUIDE.md` for how to add reflections and readings. Each main page has its own topic-filtered journal section, powered by the shared `posts.js` and `blog.js` files.

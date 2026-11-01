@@ -1,0 +1,19 @@
+/* OCEAN — blog styles. Inherits your page's fonts and colours from ocean.css. */
+.blog-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 2vw; margin-top: 40px; }
+.blog-card { display: flex; flex-direction: column; padding: 28px 24px; color: inherit; text-decoration: none;
+  border-top: 1px solid color-mix(in srgb, currentColor 35%, transparent);
+  background: color-mix(in srgb, currentColor 5%, transparent); transition: transform .4s, background .4s; }
+.blog-card:hover, .blog-card:focus-visible { transform: translateY(-6px); background: color-mix(in srgb, currentColor 9%, transparent); }
+.blog-card h3 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; font-size: 30px; line-height: 1.05; margin: 36px 0 12px; }
+.blog-card p { margin: 0 0 20px; opacity: .85; }
+.blog-meta { font-size: 11px; letter-spacing: .18em; text-transform: uppercase; opacity: .7; }
+.blog-more { margin-top: auto; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.blog-empty { opacity: .7; font-style: italic; }
+
+.post { max-width: 720px; margin: 0 auto; padding: 170px 6vw 90px; }
+.post h1 { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 400; font-size: clamp(40px, 6vw, 68px); line-height: 1; margin: 18px 0 22px; }
+.post-source { opacity: .75; margin: 0 0 40px; }
+.post-body p { font-size: 19px; line-height: 1.85; margin: 0 0 1.3em; }
+.post-foot { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
+.post a.text-link, .post-foot a { border-bottom: 1px solid; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; color: inherit; }
+@media (prefers-reduced-motion: reduce) { .blog-card { transition: none; } .blog-card:hover { transform: none; } }

@@ -243,3 +243,42 @@ a:focus-visible, button:focus-visible { outline: 2px solid #e5d8c9; outline-offs
   .pause-progress span, .cards .card { transition: none; }
   .cards .card:hover { transform: none; }
 }
+
+/* OCEAN — Moonlight color theme */
+
+:root {
+  --bg: #101F35;
+  --bg-alt: #1B3048;
+  --text: #F1F1ED;
+  --muted: #B8C9D8;
+  --accent: #AFAAC8;
+}
+
+/* Main page background */
+body {
+  background: #101F35;
+  color: #F1F1ED;
+}
+
+/* Alternate sections */
+section.alt,
+.section.alt {
+  background: #1B3048;
+}
+
+/* Light sections */
+section.light,
+.section.light {
+  background: #E8EDF0;
+  color: #1B3048;
+}
+
+/* Headings and subtle accents */
+h1, h2, h3 {
+  color: inherit;
+}
+
+/* Links */
+a {
+  color: #B8C9D8;
+}

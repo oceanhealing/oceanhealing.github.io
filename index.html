@@ -3,16 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Ocean — exploring the spaces where science, consciousness, healing, and human connection meet." />
+  <meta name="description" content="A space to pause, reflect, and explore the meeting place of science, consciousness, embodiment, and human connection." />
+  <meta name="theme-color" content="#193b3b" />
+  <meta property="og:title" content="Ocean — Making space for becoming" />
+  <meta property="og:description" content="A space to pause, reflect, and explore science, consciousness, embodiment, and human connection." />
+  <meta property="og:type" content="website" />
   <title>Ocean — Science · Healing · Consciousness</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&family=Caveat:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ocean.css?v=2" />
+  <link rel="stylesheet" href="ocean.css?v=4" />
 <link rel="stylesheet" href="hand.css" />
-<link rel="stylesheet" href="blog.css" />
+<link rel="stylesheet" href="blog.css?v=2" />
 </head>
 <body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="rough"><feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="2" seed="4" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.5"/></filter></svg>
 
   <header class="nav">
@@ -57,12 +62,10 @@
     </nav>
   </header>
   
-  <main id="top">
+  <main id="main-content">
     <section class="hero hero-home">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <video class="hero-video" autoplay muted loop playsinline preload="none" aria-hidden="true">
         <source src="media/high_level_mountain.mp4" type="video/mp4">
-        <source src="media/ocean-loop.webm" type="video/webm">
-        <source src="media/ocean-loop.mov" type="video/quicktime">
       </video>
       <div class="hero-overlay"></div>
       <button class="video-toggle" type="button" aria-label="Pause background video">Pause</button>
@@ -73,8 +76,33 @@
           Exploring the spaces where science, consciousness, embodiment,
           and human connection meet.
         </p>
-        <a class="button" href="discovery-call.html">Book a Discovery Call</a>
+        <div class="hero-actions"><a class="button" href="discovery-call.html">Book a Discovery Call</a><a class="hero-text-link" href="#pause">Take a minute to arrive ↓</a></div>
       </div>
+    </section>
+
+    <section id="pause" class="pause-section section" aria-labelledby="pause-title">
+      <div class="pause-intro">
+        <p class="eyebrow">A MOMENT FOR YOURSELF</p>
+        <h2 id="pause-title">Before you go any further,<br>take a moment to arrive.</h2>
+        <p class="pause-lead">Nothing to solve. Nothing to achieve. Just a minute to notice that you are here.</p>
+      </div>
+      <div class="pause-card" data-grounding-timer>
+        <div class="pause-orb-wrap" aria-hidden="true">
+          <div class="pause-orb" data-orb></div>
+        </div>
+        <div class="pause-instruction" data-phase aria-live="polite">When you're ready, begin.</div>
+        <div class="pause-count" data-count aria-live="off">01:00</div>
+        <div class="pause-progress" role="progressbar" aria-label="Practice progress" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0" data-progress>
+          <span data-progress-fill></span>
+        </div>
+        <p class="pause-hint" data-hint>Follow the gentle prompts, or simply sit quietly. Let your breathing remain natural.</p>
+        <div class="pause-controls">
+          <button class="pause-button primary" type="button" data-start>Begin 60 seconds</button>
+          <button class="pause-button secondary" type="button" data-reset disabled>Reset</button>
+        </div>
+        <p class="pause-complete" data-complete hidden>You've made a little space. Take that feeling with you.</p>
+      </div>
+      <p class="pause-note">A gentle invitation, not a test. There is no prescribed breathing pattern. Stop, pause, or look around whenever you need.</p>
     </section>
 
     <section id="about" class="intro section">
@@ -100,26 +128,26 @@
       </div>
 
       <div class="cards">
-        <article class="card">
-          <div class="card-number">01</div>
+        <a class="card" href="consciousness.html">
+          <div class="card-number">01 · EXPLORE</div>
           <h3>Consciousness</h3>
-          <p>Curiosity about awareness, meaning, presence, and the mystery of being human.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">02</div>
+          <p>Curiosity about awareness, meaning, presence, and the mystery of being human.</p><span class="card-link">Enter this space ↗</span>
+        </a>
+        <a class="card" href="healing.html">
+          <div class="card-number">02 · PRACTICE</div>
           <h3>Healing &amp; Embodiment</h3>
-          <p>Exploring relational intelligence, the body, nervous-system awareness, and compassionate presence.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">03</div>
+          <p>Exploring the body, nervous-system awareness, and compassionate presence.</p><span class="card-link">Enter this space ↗</span>
+        </a>
+        <a class="card" href="psychedelics.html">
+          <div class="card-number">03 · LEARN</div>
           <h3>Psychedelics</h3>
-          <p>Learning about psychedelic medicines, altered states, integration, and the science surrounding them.</p>
-        </article>
-        <article class="card">
-          <div class="card-number">04</div>
+          <p>Learning about psychedelic medicines, altered states, integration, and the science surrounding them.</p><span class="card-link">Enter this space ↗</span>
+        </a>
+        <a class="card" href="about.html#about">
+          <div class="card-number">04 · INQUIRE</div>
           <h3>Science &amp; Technology</h3>
-          <p>Bringing a scientific mind to questions of consciousness, human experience, and emerging technologies.</p>
-        </article>
+          <p>Bringing a scientific mind to questions of consciousness, human experience, and emerging technologies.</p><span class="card-link">Meet the inquiry ↗</span>
+        </a>
       </div>
     </section>
 
@@ -159,7 +187,7 @@
       </p>
       <div class="cta-actions" style="display: flex; gap: 1rem; align-items: center;">
         <a class="button dark" href="discovery-call.html">Book a Discovery Call</a>
-        <a class="button dark outline" href="mailto:hello@yourdomain.com">Say hello</a>
+        <a class="button dark outline" href="discovery-call.html">Get in touch</a>
       </div>
     </section>
   </main>
@@ -185,8 +213,9 @@
       });
     })();
   </script>
-<script src="posts.js"></script>
-<script src="blog.js"></script>
+<script src="grounding.js" defer></script>
+  <script src="posts.js" defer></script>
+<script src="blog.js" defer></script>
 <script>
 /* Hand-drawn section: lines draw themselves once when it scrolls into view. */
 (function () {

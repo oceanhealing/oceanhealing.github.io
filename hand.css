@@ -1,0 +1,51 @@
+/* OCEAN — hand-drawn touches for the "Choose a doorway" section (index.html).
+   Remove the hand.css link in index.html to switch everything off. */
+.handdrawn { position: relative; overflow: hidden; }
+.handdrawn::before { content: ""; position: absolute; inset: 0; opacity: .07; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+.handdrawn > * { position: relative; }
+
+/* headline: scribbled underline + margin note */
+.handdrawn h2 { display: inline-block; }
+.scribbled { position: relative; white-space: nowrap; }
+.scribbled svg { position: absolute; left: -2%; bottom: -.12em; width: 104%; height: .32em; overflow: visible; }
+.scribbled path { fill: none; stroke: #2f7f86; stroke-width: 3; stroke-linecap: round; }
+.hand-note { position: absolute !important; right: 14vw; top: clamp(90px, 9vw, 130px); display: flex; align-items: flex-start; gap: 6px; font: 500 26px/1 "Caveat", "Segoe Script", cursive; color: #2f7f86; transform: rotate(-4deg); }
+.hand-note svg { flex: none; width: 46px; height: 52px; margin-top: 22px; overflow: visible; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+
+/* tiles: uneven, slightly tilted, with a rough pencil outline */
+.pagelinks.hand { gap: 18px; padding: 10px 0; }
+.pagelinks.hand a { position: relative; min-height: 270px; transform: rotate(var(--tilt, 0deg)); transition: transform .45s cubic-bezier(.2,.7,.2,1), background .3s, color .3s, box-shadow .4s;
+  box-shadow: 0 14px 22px -18px rgba(22,63,66,.55); }
+.pagelinks.hand a::after { content: ""; position: absolute; inset: 5px; border: 1.5px solid rgba(22,63,66,.4); border-radius: inherit; pointer-events: none; filter: url(#rough); }
+.pagelinks.hand a:nth-child(1) { --tilt: -1deg;  border-radius: 255px 18px 225px 18px / 18px 225px 18px 255px; }
+.pagelinks.hand a:nth-child(2) { --tilt: .8deg;  border-radius: 20px 240px 16px 230px / 230px 16px 240px 20px; margin-top: 14px; }
+.pagelinks.hand a:nth-child(3) { --tilt: -.6deg; border-radius: 230px 24px 250px 18px / 20px 250px 18px 230px; }
+.pagelinks.hand a:nth-child(4) { --tilt: 1.1deg; border-radius: 18px 250px 22px 240px / 240px 20px 250px 18px; }
+.pagelinks.hand a:nth-child(5) { --tilt: -.9deg; border-radius: 245px 20px 235px 24px / 22px 235px 20px 245px; margin-top: -10px; }
+.pagelinks.hand a:nth-child(6) { --tilt: .5deg;  border-radius: 22px 235px 18px 250px / 250px 18px 235px 22px; }
+.pagelinks.hand a:hover, .pagelinks.hand a:focus-visible { transform: rotate(0) translateY(-6px); box-shadow: 0 22px 28px -18px rgba(22,63,66,.7); }
+.pagelinks.hand a:hover::after { border-color: rgba(244,239,230,.55); }
+.pagelinks.hand .card-number { font: 500 27px/1 "Caveat", "Segoe Script", cursive; letter-spacing: 0; text-transform: none; color: #2f7f86; transition: color .3s; }
+.pagelinks.hand a:hover .card-number { color: #cfe0da; }
+
+/* doodles: one single-line drawing per door */
+.doodle { position: absolute; right: 26px; top: 26px; width: 64px; height: 64px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: .75; }
+.doodle path, .doodle circle { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.armed .doodle path, .armed .doodle circle, .armed .scribbled path { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.armed.in .doodle path, .armed.in .doodle circle { animation: draw 1.6s ease forwards; animation-delay: calc(var(--i, 0) * .18s + .3s); }
+.armed.in .scribbled path { animation: draw 1.2s ease .2s forwards; }
+.armed .hand-note { opacity: 0; }
+.armed.in .hand-note { opacity: 1; transition: opacity 1s ease 1.1s; }
+.pagelinks.hand a:hover .doodle path, .pagelinks.hand a:hover .doodle circle { animation: draw2 1.2s ease forwards !important; animation-delay: 0s !important; }
+@keyframes draw  { to { stroke-dashoffset: 0; } }
+@keyframes draw2 { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+
+@media (max-width: 900px) {
+  .pagelinks.hand a:nth-child(n) { margin-top: 0; min-height: 220px; }
+  .hand-note { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pagelinks.hand a, .pagelinks.hand a:hover { transform: none; transition: none; }
+  .armed .doodle path, .armed .doodle circle, .armed .scribbled path { stroke-dashoffset: 0 !important; animation: none !important; }
+}

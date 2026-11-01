@@ -282,3 +282,16 @@ h1, h2, h3 {
 a {
   color: #B8C9D8;
 }
+
+.hero {
+  background-color: #101F35;
+  background-image:
+    linear-gradient(
+      to bottom,
+      rgba(16, 31, 53, 0.35),
+      rgba(16, 31, 53, 0.85)
+    ),
+    url("media/moonlight-ocean.jpg");
+  background-size: cover;
+  background-position: center;
+}

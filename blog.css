@@ -99,3 +99,90 @@ body { background-image: radial-gradient(ellipse at 8% 18%, rgba(201,218,207,.26
  .button,.button.dark,.blog-card { transition:none; }
  .button:hover,.button.dark:hover,.blog-card:hover { transform:none; }
 }
+
+/* Ocean V2 — visual reflection cards */
+
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.journal-card {
+  min-width: 0;
+}
+
+.journal-card-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.journal-card-image {
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 5px;
+  background: #1b3048;
+}
+
+.journal-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s ease, opacity 0.7s ease;
+}
+
+.journal-card-link:hover .journal-card-image img {
+  transform: scale(1.045);
+  opacity: 0.88;
+}
+
+.journal-card-content {
+  padding: 17px 2px 0;
+}
+
+.journal-card-content h3 {
+  margin: 0 0 10px;
+  color: #e8edf0;
+  font-size: 1.2rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.journal-card-content p {
+  color: #b8c9d8;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.journal-read-more {
+  color: #aebfd0;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+}
+
+.journal-card-link:hover .journal-read-more {
+  color: #ffffff;
+}
+
+.journal-image-placeholder {
+  background: linear-gradient(145deg, #1b3048, #101f35);
+}
+
+@media (max-width: 760px) {
+  .journal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+

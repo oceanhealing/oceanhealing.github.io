@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li><a href="consciousness.html">Consciousness</a></li>
         <li><a href="psychedelics.html">Psychedelics &amp; Science</a></li>
         <li><a href="relationship.html">Relational Intelligence</a></li>
-        <li class="nav-cta"><a href="discovery-call.html">Discovery Call</a></li>
+        <li class="nav-cta"><a href="discovery-call.html">Free Discovery Call</a></li>
       </ul>
     </nav>
   `;

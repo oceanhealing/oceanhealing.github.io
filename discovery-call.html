@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="ocean.css?v=3" />
+  <link rel="stylesheet" href="ocean.css?v=4" />
 </head>
 <body>
   <header class="nav">
@@ -28,14 +28,8 @@
 
   <main id="top">
     <section class="hero page-hero pos-b hero-discovery">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-        <source src="media/hero-discovery.webm" type="video/webm">
-        <source src="media/hero-discovery.mp4" type="video/mp4">
-        <source src="media/hero-discovery.mov" type="video/quicktime">
-      </video>
-      <div class="hero-overlay"></div>
-      <button class="video-toggle" type="button" aria-label="Pause background video">Pause</button>
-      <div class="hero-content">
+<div class="hero-overlay"></div>
+<div class="hero-content">
         <p class="eyebrow">FREE DISCOVERY CALL</p>
         <h1>A calm first<br>conversation.</h1>
         <p class="hero-copy">About 20 minutes. No pressure, no commitment.</p>
@@ -70,11 +64,11 @@
       <div id="booking" class="booking" data-booking-url="https://cal.com/ehsan-ocean-gharib-nezhad-upzw2i/30min">
         <div class="booking-empty">
           <h3>Select a time below</h3>
-          <p>If you prefer to email directly or have questions before booking, feel free to reach out.</p>
-          <a class="button dark solid" href="mailto:hello@yourdomain.com?subject=Free%20discovery%20call">Email to book</a>
+          <p>If the calendar does not load, open the booking page directly in a new tab.</p>
+          <a class="button dark solid" href="https://cal.com/ehsan-ocean-gharib-nezhad-upzw2i/30min" target="_blank" rel="noopener">Open booking calendar</a>
         </div>
       </div>
-      <p><a id="booking-open" class="text-link" href="#" target="_blank" rel="noopener" hidden>Open the calendar in a new tab</a></p>
+      <p><a id="booking-open" class="text-link" href="https://cal.com/ehsan-ocean-gharib-nezhad-upzw2i/30min" target="_blank" rel="noopener">Open the calendar in a new tab</a></p>
     </section>
 
     <section class="section faq">
@@ -118,7 +112,7 @@
       if (bookingSlot) {
         var url = bookingSlot.getAttribute('data-booking-url');
         if (url && url.trim() !== '') {
-          bookingSlot.innerHTML = '<iframe src="' + url + '" style="width:100%;height:650px;border:0;border-radius:12px;" loading="lazy"></iframe>';
+          bookingSlot.innerHTML = '<iframe title="Choose a time for a free discovery call" src="' + url + '" style="width:100%;height:650px;border:0;border-radius:12px;" loading="lazy" allow="payment"></iframe>'; 
           if (openLink) {
             openLink.href = url;
             openLink.hidden = false;

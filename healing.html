@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Healing and embodiment: nervous-system awareness, relational intelligence, and compassionate presence." />
+  <meta name="description" content="Healing and embodiment: somatic presence, mindfulness, and meditation." />
   <title>Healing & Embodiment — Ocean</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ocean.css?v=3" />
+<link rel="stylesheet" href="blog.css" />
 </head>
 <body>
 <header class="nav">
@@ -38,7 +39,7 @@
       <div class="hero-content">
         <p class="eyebrow">HEALING &amp; EMBODIMENT</p>
         <h1>Come back<br>to the body.</h1>
-        <p class="hero-copy">Nervous-system awareness, relational intelligence, and compassionate presence.</p>
+        <p class="hero-copy">Somatic presence, mindfulness, and meditation: a way back into the body.</p>
       </div>
     </section>
 
@@ -62,6 +63,44 @@
       </div>
     </section>
 
+    <section id="presence" class="section">
+      <p class="eyebrow">SOMATIC PRESENCE</p>
+      <h2 class="md">Presence begins in the body.</h2>
+      <div class="prose">
+        <p class="lead">Presence is not a state to achieve. It is a sensation to notice.</p>
+        <p>Somatic practice means listening through the body: the weight of the feet, the rhythm of the breath, the quiet signals of the nervous system. Mindfulness and meditation are ways of returning to that listening, again and again, with kindness.</p>
+      </div>
+    </section>
+
+    <section id="practices" class="section">
+      <p class="eyebrow">THREE DOORWAYS</p>
+      <h2 class="md">Ways I practice.</h2>
+      <div class="steps">
+        <article><p class="post-tag">BODY</p><h3>Somatic presence</h3><p>Noticing sensation, posture, and the nervous system, and letting the body set the pace.</p></article>
+        <article><p class="post-tag">ATTENTION</p><h3>Mindfulness</h3><p>Meeting each moment as it is, with curiosity rather than judgment, in daily life as much as on the cushion.</p></article>
+        <article><p class="post-tag">STILLNESS</p><h3>Meditation</h3><p>Sitting, breathing, and resting in awareness, in simple forms anyone can begin with.</p></article>
+      </div>
+    </section>
+
+    <section id="listen" class="section alt">
+      <p class="eyebrow">PRACTICE WITH ME</p>
+      <h2 class="md">Listen, watch, arrive.</h2>
+      <p class="sub-note">Guided audio and video meditations are on their way. Each space below becomes a player once you add a file.</p>
+      <!-- HOW TO ADD A RECORDING: upload the file to the media folder, then set data-src, e.g. data-src="media/body-scan.mp3".
+           Use .mp3 for audio slots and .mp4 for video slots. Optional: data-poster="media/cover.jpg" on a video slot. -->
+      <div class="media-grid">
+        <div class="media-slot" data-type="video" data-src="">
+          <div class="media-empty"><p class="post-tag">VIDEO · COMING SOON</p><h3>Guided meditation</h3><p><em>[A short seated practice, filmed. Add the file when it's ready.]</em></p></div>
+        </div>
+        <div class="media-slot" data-type="audio" data-src="">
+          <div class="media-empty"><p class="post-tag">AUDIO · COMING SOON</p><h3>Body scan</h3><p><em>[A guided audio you can listen to with eyes closed.]</em></p></div>
+        </div>
+        <div class="media-slot" data-type="video" data-src="">
+          <div class="media-empty"><p class="post-tag">VIDEO · COMING SOON</p><h3>Mindful movement</h3><p><em>[Gentle somatic movement to arrive in the body.]</em></p></div>
+        </div>
+      </div>
+    </section>
+
     <section id="offerings" class="section alt">
       <p class="eyebrow">WAYS TO WORK TOGETHER</p>
       <h2 class="md">Offerings.</h2>
@@ -72,6 +111,13 @@
       </div>
       <p class="note">This work is supportive and educational. It is not a substitute for medical or psychological care.</p>
     </section>
+        <!-- READINGS & REFLECTIONS: shows posts tagged "healing" from posts.js -->
+    <section class="section blog" id="readings">
+      <p class="eyebrow">READINGS &amp; REFLECTIONS</p>
+      <h2 class="md">Notes along the way.</h2>
+      <div data-blog="healing"></div>
+    </section>
+
     <section id="connect" class="connect section">
       <p class="eyebrow">LET’S CONNECT</p>
       <h2>Start your<br>journey here.</h2>
@@ -101,5 +147,18 @@
       });
     })();
   </script>
+<script>
+/* Turns each .media-slot into a player once its data-src is filled in. */
+document.querySelectorAll('.media-slot').forEach(function (slot) {
+  var src = slot.getAttribute('data-src');
+  if (!src) return;
+  var el = document.createElement(slot.dataset.type === 'audio' ? 'audio' : 'video');
+  el.controls = true; el.preload = 'metadata'; el.src = src;
+  if (el.tagName === 'VIDEO') { el.playsInline = true; if (slot.dataset.poster) el.poster = slot.dataset.poster; }
+  slot.innerHTML = ''; slot.appendChild(el);
+});
+</script>
+<script src="posts.js"></script>
+<script src="blog.js"></script>
 </body>
 </html>

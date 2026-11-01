@@ -175,7 +175,8 @@
     <section id="writing" class="writing section">
       <p class="eyebrow">FROM THE JOURNAL</p>
       <h2>Questions I’m living into.</h2>
-      <div data-blog="all" data-limit="3"></div>
+      <div class="journal-grid" data-blog="all" data-limit="4"></div>
+      <p class="journal-note">A growing collection of ideas, practices, and questions. <a href="#writing">Explore the journal →</a></p>
     </section>
 
     <section id="connect" class="connect section">
@@ -224,6 +225,5 @@
   new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { sec.classList.add('in'); o.disconnect(); } }, { threshold: .25 }).observe(sec);
 })();
 </script>
-<script src="media-player.js" defer></script>
 </body>
 </html>

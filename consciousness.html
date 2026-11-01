@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ocean.css?v=3" />
+  <link rel="stylesheet" href="blog.css" />
 </head>
 <body>
 <header class="nav">
@@ -62,6 +63,14 @@
         <article><h3>Inquiry</h3><p>Asking simple questions slowly: <em>What is here? Who is noticing?</em></p></article>
       </div>
     </section>
+
+    <!-- READINGS & REFLECTIONS: shows posts tagged "consciousness" from posts.js -->
+    <section class="section blog" id="readings">
+      <p class="eyebrow">READINGS &amp; REFLECTIONS</p>
+      <h2 class="md">Notes along the way.</h2>
+      <div data-blog="consciousness"></div>
+    </section>
+
     <section id="connect" class="connect section">
       <p class="eyebrow">LET’S CONNECT</p>
       <h2>Stay curious.</h2>
@@ -91,5 +100,8 @@
       });
     })();
   </script>
+  <!-- Blog scripts: posts.js (your writing) must load before blog.js -->
+  <script src="posts.js"></script>
+  <script src="blog.js"></script>
 </body>
 </html>

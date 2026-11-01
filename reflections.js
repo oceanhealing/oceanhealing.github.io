@@ -4,21 +4,30 @@ async function loadReflections() {
 
   for (const container of containers) {
     const category = container.dataset.reflections;
-    const limit = Number(container.dataset.limit || 3);
+    const limit = category === "all"
+      ? Infinity
+      : Number(container.dataset.limit || 3);
 
     try {
       const response = await fetch("reflections/index.json");
-      if (!response.ok) throw new Error("Could not load reflection index.");
+
+      if (!response.ok) {
+        throw new Error("Could not load reflection index.");
+      }
 
       const files = await response.json();
 
       const reflections = await Promise.all(
         files.map(async (file) => {
           const result = await fetch(`reflections/${file}`);
+
           if (!result.ok) return null;
 
           const markdown = await result.text();
-          const match = markdown.match(/^---\s*([\s\S]*?)\s*---\s*([\s\S]*)$/);
+
+          const match = markdown.match(
+            /^---\s*([\s\S]*?)\s*---\s*([\s\S]*)$/
+          );
 
           if (!match) return null;
 
@@ -26,8 +35,11 @@ async function loadReflections() {
 
           match[1].split("\n").forEach((line) => {
             const item = line.match(/^([\w-]+):\s*(.*)$/);
+
             if (item) {
-              metadata[item[1]] = item[2].trim().replace(/^["']|["']$/g, "");
+              metadata[item[1]] = item[2]
+                .trim()
+                .replace(/^["']|["']$/g, "");
             }
           });
 
@@ -39,17 +51,25 @@ async function loadReflections() {
         .filter((post) => {
           if (!post || !post.title) return false;
 
+          // Show every reflection when category is "all"
+          if (!category || category === "all") return true;
+
           const topics = (post.topics || "")
             .replace(/[\[\]]/g, "")
             .split(",")
             .map((topic) => topic.trim());
 
-          return !category || topics.includes(category);
+          return topics.includes(category);
         })
         .sort((a, b) => b.date.localeCompare(a.date))
         .slice(0, limit);
 
       container.replaceChildren();
+
+      if (filtered.length === 0) {
+        container.textContent = "New reflections will find their way here.";
+        continue;
+      }
 
       filtered.forEach((post) => {
         const card = document.createElement("article");
@@ -93,6 +113,7 @@ async function loadReflections() {
 
     } catch (error) {
       console.error("Reflections could not be loaded:", error);
+      container.textContent = "Reflections are temporarily unavailable.";
     }
   }
 }

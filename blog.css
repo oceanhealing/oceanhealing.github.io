@@ -17,3 +17,24 @@
 .post-foot { margin-top: 56px; display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
 .post a.text-link, .post-foot a { border-bottom: 1px solid; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; text-decoration: none; color: inherit; }
 @media (prefers-reduced-motion: reduce) { .blog-card { transition: none; } .blog-card:hover { transform: none; } }
+
+.media-player {
+  display: block;
+  width: 100%;
+  border-radius: 14px;
+}
+
+.media-slot video {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: #193b3b;
+}
+
+.media-slot audio {
+  margin-top: 1rem;
+}
+
+.media-slot {
+  overflow: hidden;
+  border-radius: 16px;
+}

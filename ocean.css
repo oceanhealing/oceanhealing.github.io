@@ -177,18 +177,69 @@ a:focus-visible, button:focus-visible { outline: 2px solid #e5d8c9; outline-offs
 /* ---------- Readable nav over bright skies ---------- */
 .nav::before { content: ""; position: absolute; z-index: -1; top: 0; left: 0; right: 0; height: 170px; background: linear-gradient(180deg, rgba(8,35,39,.6), rgba(8,35,39,0)); pointer-events: none; }
 
-/* ---------- Per-page hero photos ----------
-   Drop media/hero-<page>.jpg in place and it replaces the ocean photo for that page.
-   If a file is missing, the ocean photo shows instead. */
+/* ---------- Per-page hero photos ---------- */
 :root { --ocean-photo: url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2200&q=85"); }
-.hero.hero-home { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-home.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
-.hero.hero-about { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-about.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
-.hero.hero-healing { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-healing.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
-.hero.hero-consciousness { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-consciousness.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
+.hero.hero-home, .hero.hero-about, .hero.hero-healing, .hero.hero-consciousness, .hero.hero-relationship, .hero.hero-discovery, .hero.hero-podcast { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), var(--ocean-photo); background-size: cover; background-position: center; }
 .hero.hero-psychedelics { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-psychedelics.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
-.hero.hero-relationship { background-image: linear-gradient(180deg, rgba(10,40,44,.18), rgba(8,35,39,.74)), url("media/hero-relationship.jpg"), var(--ocean-photo); background-size: cover; background-position: center; }
-.hero.page-hero.pos-a { background-position: center, center, 30% 60%; }
-.hero.page-hero.pos-b { background-position: center, center, 70% 40%; }
-.hero.page-hero.pos-c { background-position: center, center, 50% 80%; }
+.hero.page-hero.pos-a { background-position: center, 30% 60%; }
+.hero.page-hero.pos-b { background-position: center, 70% 40%; }
+.hero.page-hero.pos-c { background-position: center, 50% 80%; }
 
 
+/* ---------- Ocean V2: arrival practice + accessible refinements ---------- */
+.skip-link { position: fixed; z-index: 100; top: 12px; left: 12px; padding: 10px 16px; background: #f4efe6; color: #193b3b; border-radius: 30px; transform: translateY(-160%); }
+.skip-link:focus { transform: translateY(0); }
+.pause-section { background: #e9e1d3; display: grid; grid-template-columns: minmax(240px, .9fr) minmax(320px, 1.1fr); column-gap: 7vw; row-gap: 24px; align-items: center; }
+.pause-intro { max-width: 540px; }
+.pause-intro h2 { font-size: clamp(40px, 5vw, 66px); line-height: 1.02; margin-bottom: 24px; }
+.pause-lead { max-width: 440px; font-size: 18px; }
+.pause-card { position: relative; overflow: hidden; padding: clamp(28px, 4vw, 52px); border-radius: 4px 70px 4px 70px; background: #163f42; color: #f4efe6; text-align: center; box-shadow: 0 24px 60px rgba(22,63,66,.12); }
+.pause-orb-wrap { display: grid; place-items: center; min-height: 150px; margin: 0 auto 18px; }
+.pause-orb { width: 112px; height: 112px; border-radius: 50%; background: radial-gradient(circle at 34% 28%, #dce9dc 0, #9ebfba 30%, #5d9391 66%, #2d6669 100%); box-shadow: 0 0 0 14px rgba(220,233,220,.07), 0 0 65px rgba(158,191,186,.28); transform: scale(.94); }
+.pause-card.is-running .pause-orb { animation: ocean-drift 8s ease-in-out infinite alternate; }
+.pause-card.is-complete .pause-orb { box-shadow: 0 0 0 20px rgba(220,233,220,.08), 0 0 85px rgba(158,191,186,.4); }
+@keyframes ocean-drift { from { transform: scale(.92) translateY(3px); } to { transform: scale(1.08) translateY(-3px); } }
+.pause-instruction { min-height: 30px; font-family: "Cormorant Garamond", Georgia, serif; font-size: clamp(25px, 3vw, 34px); }
+.pause-count { margin: 8px 0 16px; font-variant-numeric: tabular-nums; font-size: 13px; letter-spacing: .18em; opacity: .82; }
+.pause-progress { height: 3px; margin: 0 auto 22px; max-width: 360px; background: rgba(244,239,230,.2); overflow: hidden; }
+.pause-progress span { display: block; width: 0; height: 100%; background: #c9d9cc; transition: width .25s linear; }
+.pause-hint { max-width: 430px; min-height: 54px; margin: 0 auto 24px; color: rgba(244,239,230,.86); font-size: 14px; }
+.pause-controls { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; }
+.pause-button { min-height: 44px; padding: 11px 19px; border: 1px solid rgba(244,239,230,.65); border-radius: 100px; font: inherit; font-size: 11px; letter-spacing: .1em; text-transform: uppercase; cursor: pointer; transition: background .2s, color .2s, opacity .2s; }
+.pause-button.primary { background: #e9e1d3; color: #193b3b; }
+.pause-button.secondary { background: transparent; color: #f4efe6; }
+.pause-button:hover:not(:disabled) { background: #c9d9cc; color: #193b3b; }
+.pause-button:disabled { opacity: .4; cursor: not-allowed; }
+.pause-complete { margin: 20px 0 0; color: #dce9dc; font-family: "Cormorant Garamond", Georgia, serif; font-size: 23px; }
+.pause-note { grid-column: 1 / -1; margin: 0; text-align: center; color: #526765; font-size: 12px; }
+.cards .card { display: block; color: inherit; text-decoration: none; transition: transform .3s, box-shadow .3s; }
+.cards .card:hover, .cards .card:focus-visible { transform: translateY(-5px); box-shadow: 0 18px 32px rgba(22,63,66,.12); }
+.card-link { display: inline-block; margin-top: 22px; border-bottom: 1px solid currentColor; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; }
+.hero-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 18px; }
+.hero-text-link { font-size: 12px; letter-spacing: .08em; border-bottom: 1px solid rgba(255,255,255,.65); padding-bottom: 4px; }
+@media (max-width: 900px) {
+  .pause-section { grid-template-columns: 1fr; }
+  .pause-intro { max-width: 680px; }
+  .pause-card { max-width: 620px; width: 100%; margin: 0 auto; }
+}
+@media (max-width: 1240px) {
+  .nav { align-items: flex-start; gap: 10px; }
+  .site-nav { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; }
+  .site-nav::-webkit-scrollbar { display: none; }
+  .site-nav > ul { width: max-content; flex-wrap: nowrap; gap: 22px; padding: 0 2px 8px; }
+  .submenu { display: none !important; }
+}
+@media (max-width: 600px) {
+  .nav { padding: 18px 6vw; }
+  .site-nav > ul { gap: 18px; font-size: 10px; }
+  .hero { min-height: 88vh; }
+  .hero-actions { align-items: flex-start; flex-direction: column; gap: 14px; }
+  .pause-card { border-radius: 4px 42px 4px 42px; }
+  .pause-orb-wrap { min-height: 125px; }
+  .pause-orb { width: 92px; height: 92px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .pause-card.is-running .pause-orb { animation: none; }
+  .pause-progress span, .cards .card { transition: none; }
+  .cards .card:hover { transform: none; }
+}

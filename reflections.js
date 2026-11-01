@@ -79,18 +79,6 @@ async function loadReflections() {
         link.className = "journal-card-link";
         link.href = `reflection.html?file=${encodeURIComponent(post.file)}`;
 
-        const imageWrap = document.createElement("div");
-        imageWrap.className = "journal-card-image";
-
-        if (post.image) {
-          const img = document.createElement("img");
-          img.src = post.image;
-          img.alt = post.title;
-          img.loading = "lazy";
-          imageWrap.appendChild(img);
-        } else {
-          imageWrap.classList.add("journal-image-placeholder");
-        }
 
         const content = document.createElement("div");
         content.className = "journal-card-content";
@@ -106,7 +94,7 @@ async function loadReflections() {
         readMore.textContent = "Read reflection →";
 
         content.append(title, summary, readMore);
-        link.append(imageWrap, content);
+        link.appendChild(content);
         card.appendChild(link);
         container.appendChild(card);
       });

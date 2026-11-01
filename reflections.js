@@ -118,4 +118,27 @@ async function loadReflections() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadReflections);
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("Reflection loader started.");
+
+  try {
+    const response = await fetch("reflections/index.json");
+    console.log("Index response:", response.status);
+
+    const files = await response.json();
+    console.log("Reflection files:", files);
+
+    for (const file of files) {
+      const result = await fetch(`reflections/${file}`);
+      console.log(file, "status:", result.status);
+
+      const content = await result.text();
+      console.log(file, "content preview:", content.slice(0, 200));
+    }
+
+    await loadReflections();
+
+  } catch (error) {
+    console.error("Reflection diagnostic failed:", error);
+  }
+});

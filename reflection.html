@@ -182,6 +182,58 @@
       parent.append(document.createTextNode(text.slice(lastIndex)));
     }
 
+    // Two more little photos: one in the middle of the passage (photo2), one at the end on the right (photo3).
+    function makeSnap(src, caption, alt, cls) {
+      const fig = document.createElement("figure");
+      fig.className = "snap " + cls;
+      const tape = document.createElement("span");
+      tape.className = "tape";
+      tape.setAttribute("aria-hidden", "true");
+      const img = new Image();
+      img.alt = alt || "";
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.width = 400;
+      img.height = 400;
+      img.onerror = () => fig.remove();
+      img.src = src;
+      const cap = document.createElement("figcaption");
+      cap.textContent = caption || "";
+      fig.append(tape, img, cap);
+      return fig;
+    }
+
+    function placePhotos(metadata, okPath, endElement) {
+      const snaps = [];
+      if (okPath(metadata.photo2)) {
+        const fig = makeSnap(metadata.photo2, metadata["photo2-caption"], metadata["photo2-alt"], "snap-mid");
+        const kids = [...contentElement.children];
+        if (kids.length >= 2) {
+          kids[Math.ceil(kids.length / 2) - 1].after(fig);
+        } else if (kids.length === 1 && kids[0].tagName === "P" && !kids[0].children.length) {
+          // a single paragraph: pause at the sentence nearest the middle
+          const text = kids[0].textContent;
+          const sentences = text.match(/[^.!?]+[.!?]+["')\]]*\s*/g);
+          if (sentences && sentences.length >= 2) {
+            let first = "", i = 0;
+            while (i < sentences.length - 1 && first.length < text.length / 2) first += sentences[i++];
+            const rest = text.slice(first.length);
+            kids[0].textContent = first.trim();
+            const second = document.createElement("p");
+            second.textContent = rest.trim();
+            kids[0].after(fig, second);
+          } else kids[0].after(fig);
+        } else contentElement.append(fig);
+        snaps.push(fig);
+      }
+      if (okPath(metadata.photo3)) {
+        const fig = makeSnap(metadata.photo3, metadata["photo3-caption"], metadata["photo3-alt"], "snap-end");
+        contentElement.after(fig);
+        snaps.push(fig);
+      }
+      return snaps;
+    }
+
     // Drop cap: a real element, so it can arrive together with the first line.
     function dropCap(root) {
       if (root.classList.contains("is-poem")) return;
@@ -397,9 +449,16 @@
         renderMarkdown(body);
 
         endElement.hidden = false;
+        const snaps = placePhotos(metadata, okPath, endElement);
         dropCap(contentElement);
         const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if ("IntersectionObserver" in window && !calm) revealByLines(contentElement);
+        if ("IntersectionObserver" in window && !calm) {
+          revealByLines(contentElement);
+          const sio = new IntersectionObserver((entries, o) => entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add("in"); o.unobserve(e.target); }
+          }), { threshold: 0.15 });
+          snaps.forEach(f => sio.observe(f));
+        } else snaps.forEach(f => f.classList.add("in"));
 
         const topics = Array.isArray(metadata.topics)
           ? metadata.topics

@@ -16,13 +16,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@500&display=swap"
     rel="stylesheet"
   >
 
   <link rel="stylesheet" href="ocean.css?v=4" />
   <link rel="stylesheet" href="blog.css?v=2" />
   <script src="nav.js" defer></script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="polish.css?v=1" />
 </head>
 
 <body>
@@ -33,17 +35,7 @@
   <!-- HERO -->
   <section class="hero page-hero pos-c hero-consciousness">
 
-    <video
-      class="hero-video"
-      autoplay
-      muted
-      loop
-      playsinline
-      preload="metadata"
-      aria-hidden="true"
-    >
-      <source src="media/hero-consciousness.mp4" type="video/mp4">
-    </video>
+    <video class="hero-video" muted loop playsinline aria-hidden="true" preload="none" data-src="media/hero-consciousness.mp4" data-src-sm="media/hero-consciousness-sm.mp4"></video>
 
     <div class="hero-overlay"></div>
 
@@ -198,7 +190,7 @@
 
     <div
       class="journal-grid"
-      data-reflections="all"
+      data-journal="all" data-keep-empty
       aria-live="polite"
     >
       <p class="sub-note">
@@ -237,11 +229,14 @@
 
 
 <!-- FOOTER -->
-<footer>
-  <div>OCEAN</div>
-  <div>Science · Healing · Consciousness</div>
-  <div>© 2026</div>
-</footer>
+<footer class="site-footer">
+    <div class="foot-brand"><strong>OCEAN</strong><span>Science · Healing · Consciousness</span></div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="journal.html">Journal</a><a href="podcast.html">Podcast</a><a href="discovery-call.html">Discovery call</a>
+    </nav>
+    <p class="foot-note">Ocean offers educational and supportive conversations. It is not psychotherapy or medical care, and not a substitute for either.</p>
+    <div class="foot-copy">© 2026</div>
+  </footer>
 
 
 <!-- HERO VIDEO CONTROLS -->
@@ -294,15 +289,8 @@
 
 })();
 </script>
-
-
-<!-- MARKDOWN REFLECTION LOADER -->
-<script src="reflections.js" defer></script>
-<div
-  class="journal-grid"
-  data-reflections="all"
-  aria-live="polite"
-></div>
   
+  <script src="journal.js" defer></script>
+  <script src="polish.js" defer></script>
 </body>
 </html>

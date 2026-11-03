@@ -16,13 +16,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@500&display=swap"
     rel="stylesheet"
   >
 
   <link rel="stylesheet" href="ocean.css?v=4" />
   <link rel="stylesheet" href="blog.css?v=3" />
   <script src="nav.js" defer></script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="polish.css?v=1" />
 </head>
 
 <body>
@@ -335,7 +337,7 @@
 
     <div
       class="journal-grid"
-      data-reflections="healing"
+      data-journal="healing" data-keep-empty
       data-limit="3"
       aria-live="polite"
     >
@@ -347,7 +349,7 @@
 
     <p class="journal-note">
       New writing is added slowly, with care.
-      <a href="index.html#writing">
+      <a href="journal.html">
         Explore all reflections →
       </a>
     </p>
@@ -374,11 +376,14 @@
 
 
 <!-- FOOTER -->
-<footer>
-  <div>OCEAN</div>
-  <div>Science · Healing · Consciousness</div>
-  <div>© 2026</div>
-</footer>
+<footer class="site-footer">
+    <div class="foot-brand"><strong>OCEAN</strong><span>Science · Healing · Consciousness</span></div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="journal.html">Journal</a><a href="podcast.html">Podcast</a><a href="discovery-call.html">Discovery call</a>
+    </nav>
+    <p class="foot-note">Ocean offers educational and supportive conversations. It is not psychotherapy or medical care, and not a substitute for either.</p>
+    <div class="foot-copy">© 2026</div>
+  </footer>
 
 
 <!-- MEDIA PLAYER -->
@@ -413,9 +418,6 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 </script>
 
-
-<!-- MARKDOWN REFLECTION LOADER -->
-<script src="reflections.js" defer></script>
-
+  <script src="journal.js" defer></script>
 </body>
 </html>

@@ -7,10 +7,12 @@
   <title>Meet Ocean — Ocean</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ocean.css?v=4" />
   <link rel="stylesheet" href="blog.css?v=3" />
   <script src="nav.js" defer></script>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="polish.css?v=1" />
 </head>
 <body>
 <div id="site-header"></div>
@@ -35,6 +37,10 @@
           <p class="lead">My path has moved through science, research, technology, meditation, embodiment, and the deeply human work of healing.</p>
           <p>I’m interested in what becomes possible when we meet ourselves with more curiosity, compassion, presence, and honesty, and when we let different ways of knowing speak to one another.</p>
           <p>A scientific mind and a feeling body are not opposites. I try to hold both: rigorous about what we know, humble about what we don’t.</p>
+          <div class="voice-hello" data-voice-hello>
+            <span class="hand">hear me say hello</span>
+            <p class="voice-soon">A short voice greeting will live here soon.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -66,16 +72,19 @@
         <p class="journal-intro">Personal notes on the path behind Ocean: science, migration, curiosity, and becoming.</p></div>
         <span class="journal-mark" aria-hidden="true">✳</span>
       </div>
-      <div class="journal-grid" data-blog="about"></div>
-      <p class="journal-note">New writing is added slowly, with care. <a href="index.html#writing">Explore all reflections →</a></p>
+      <div class="journal-grid" data-journal="about" data-keep-empty></div>
+      <p class="journal-note">New writing is added slowly, with care. <a href="journal.html">Explore all reflections →</a></p>
     </section>
 
   </main>
   <section class="next-page"><div><p class="eyebrow">NEXT</p><a href="healing.html">Healing &amp; Embodiment →</a></div><a href="index.html" style="font-size:16px;font-family:Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase">Back to home</a></section>
-  <footer>
-    <div>OCEAN</div>
-    <div>Science · Healing · Consciousness</div>
-    <div>© 2026</div>
+  <footer class="site-footer">
+    <div class="foot-brand"><strong>OCEAN</strong><span>Science · Healing · Consciousness</span></div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="journal.html">Journal</a><a href="podcast.html">Podcast</a><a href="discovery-call.html">Discovery call</a>
+    </nav>
+    <p class="foot-note">Ocean offers educational and supportive conversations. It is not psychotherapy or medical care, and not a substitute for either.</p>
+    <div class="foot-copy">© 2026</div>
   </footer>
   <script>
     (function () {
@@ -92,7 +101,7 @@
       });
     })();
   </script>
-  <script src="posts.js" defer></script>
-  <script src="blog.js" defer></script>
+  <script src="journal.js" defer></script>
+  <script src="polish.js" defer></script>
 </body>
 </html>

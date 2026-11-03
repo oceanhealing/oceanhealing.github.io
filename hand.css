@@ -49,7 +49,6 @@
   .pagelinks.hand a, .pagelinks.hand a:hover { transform: none; transition: none; }
   .armed .doodle path, .armed .doodle circle, .armed .scribbled path { stroke-dashoffset: 0 !important; animation: none !important; }
 }
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600&display=swap');
 
 #pause .pause-intro h2,
 #pause .pause-instruction,

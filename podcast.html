@@ -7,9 +7,11 @@
   <title>Podcast — Ocean</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ocean.css?v=4" />
   <link rel="stylesheet" href="blog.css?v=3" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="polish.css?v=1" />
 </head>
 <body>
 <header class="nav">
@@ -89,18 +91,20 @@
         <p class="journal-intro">Episode notes, conversations, listening guides, and ideas from the Ocean audio journal.</p></div>
         <span class="journal-mark" aria-hidden="true">✳</span>
       </div>
-      <div class="journal-grid" data-blog="podcast"></div>
-      <p class="journal-note">New writing is added slowly, with care. <a href="index.html#writing">Explore all reflections →</a></p>
+      <div class="journal-grid" data-journal="podcast" data-keep-empty></div>
+      <p class="journal-note">New writing is added slowly, with care. <a href="journal.html">Explore all reflections →</a></p>
     </section>
 
   </main>
   <section class="next-page"><div><p class="eyebrow">NEXT</p><a href="index.html">Home →</a></div><a href="index.html" class="small-link">Back to home</a></section>
-  <footer>
-    <div>OCEAN</div>
-    <div>Science · Healing · Consciousness</div>
-    <div>© 2026</div>
+  <footer class="site-footer">
+    <div class="foot-brand"><strong>OCEAN</strong><span>Science · Healing · Consciousness</span></div>
+    <nav class="foot-links" aria-label="Footer">
+      <a href="journal.html">Journal</a><a href="podcast.html">Podcast</a><a href="discovery-call.html">Discovery call</a>
+    </nav>
+    <p class="foot-note">Ocean offers educational and supportive conversations. It is not psychotherapy or medical care, and not a substitute for either.</p>
+    <div class="foot-copy">© 2026</div>
   </footer>
-  <script src="posts.js" defer></script>
-  <script src="blog.js" defer></script>
+  <script src="journal.js" defer></script>
 </body>
 </html>

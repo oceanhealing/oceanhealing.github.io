@@ -30,7 +30,7 @@ body { background-color: var(--cream); }
 .reflection-content { font-family: "Newsreader", "Cormorant Garamond", Georgia, serif; font-weight: 400;
   font-size: clamp(19px, 2.1vw, 22px); line-height: 1.95; color: #23403f; hyphens: manual; }
 .reflection-content p { margin: 0 0 1.5em; }
-.reflection-content:not(.is-poem) > p:first-child::first-letter { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
+.reflection-content .dc { font-family: "Cormorant Garamond", Georgia, serif; font-weight: 500;
   font-size: 4.3em; float: left; line-height: .8; padding: .07em .12em 0 0; color: #276b72; }
 .reflection-content h2 { font-family: "Cormorant Garamond", Georgia, serif; font-style: italic; font-weight: 400; font-size: clamp(30px, 4vw, 42px); line-height: 1.15; margin: 2em 0 .6em; color: #173b3c; }
 .reflection-content h3 { font-family: var(--hand); font-weight: 500; font-size: 30px; margin: 1.8em 0 .4em; color: #276b72; }
@@ -71,19 +71,20 @@ body { background-color: var(--cream); }
 @media (max-width: 600px) { .reflection-image { max-height: 320px; } }
 
 /* =====================================================================
-   HANDWRITING MODE (default on reflections; add  font: serif  to a file's header to turn it off)
+   HANDWRITING ACCENTS (default): title, date, sign-off in Caveat. Body text is the serif.
+   Header options:  font: hand  = handwritten paragraphs too   font: serif  = no handwriting at all
    Title + labels: Caveat · Paragraphs: Kalam (a natural pen hand)
    ===================================================================== */
 body.hand-mode .reflection-hero h1 { font-family: "Caveat", "Segoe Script", cursive; font-style: normal; font-weight: 600;
   font-size: clamp(54px, 9.4vw, 112px); line-height: .98; max-width: 13ch; letter-spacing: 0; }
-body.hand-mode .reflection-summary { font-family: "Kalam", "Segoe Script", cursive; font-style: normal; font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.7; max-width: 32ch; }
-body.hand-mode .reflection-content { font-family: "Kalam", "Segoe Script", cursive; font-weight: 300; font-size: clamp(19px, 2.2vw, 23px); line-height: 2.05; letter-spacing: .005em; color: #1f4140; }
-body.hand-mode .reflection-content p { margin-bottom: 1.35em; }
-body.hand-mode .reflection-content:not(.is-poem) > p:first-child::first-letter { font-family: "Caveat", "Segoe Script", cursive; font-weight: 600; font-size: 3.4em; line-height: .75; padding: .08em .1em 0 0; color: #b87b3f; }
-body.hand-mode .reflection-content h2 { font-family: "Caveat", "Segoe Script", cursive; font-style: normal; font-weight: 600; font-size: clamp(36px, 5vw, 50px); color: #276b72; }
-body.hand-mode .reflection-content h3 { font-family: "Kalam", cursive; font-weight: 400; font-size: 1.15em; color: #276b72; }
-body.hand-mode .reflection-content blockquote { font-style: normal; font-size: 1.05em; color: #1d4a4c; }
-body.hand-mode .reflection-content.is-poem p { line-height: 2.25; font-size: 1.05em; }
+body.hand-body .reflection-summary { font-family: "Kalam", "Segoe Script", cursive; font-style: normal; font-weight: 300; font-size: clamp(18px, 2vw, 22px); line-height: 1.7; max-width: 32ch; }
+body.hand-body .reflection-content { font-family: "Kalam", "Segoe Script", cursive; font-weight: 300; font-size: clamp(19px, 2.2vw, 23px); line-height: 2.05; letter-spacing: .005em; color: #1f4140; }
+body.hand-body .reflection-content p { margin-bottom: 1.35em; }
+body.hand-body .reflection-content .dc { font-family: "Caveat", "Segoe Script", cursive; font-weight: 600; font-size: 3.4em; line-height: .75; padding: .08em .1em 0 0; color: #b87b3f; }
+body.hand-body .reflection-content h2 { font-family: "Caveat", "Segoe Script", cursive; font-style: normal; font-weight: 600; font-size: clamp(36px, 5vw, 50px); color: #276b72; }
+body.hand-body .reflection-content h3 { font-family: "Kalam", cursive; font-weight: 400; font-size: 1.15em; color: #276b72; }
+body.hand-body .reflection-content blockquote { font-style: normal; font-size: 1.05em; color: #1d4a4c; }
+body.hand-body .reflection-content.is-poem p { line-height: 2.25; font-size: 1.05em; }
 body.hand-mode .reflection-end .signoff { font-weight: 600; font-size: 36px; }
 @media (max-width: 600px) { body.hand-mode .reflection-hero h1 { font-size: clamp(48px, 15vw, 70px); } }
 
@@ -109,3 +110,11 @@ body.hand-mode .reflection-end .signoff { font-weight: 600; font-size: 36px; }
   .reflection-hero.has-polaroid { padding-top: clamp(236px, 32vh, 280px); }
 }
 @media (prefers-reduced-motion: reduce) { .polaroid { animation: none; } }
+
+
+/* ---------- Text arrives line by line (quickly) ---------- */
+.reflection-content .reveal .w, .reflection-content .reveal .dc { opacity: 0; }
+.reflection-content .reveal.go .w, .reflection-content .reveal.go .dc {
+  animation: line-in .6s ease-out both; animation-delay: min(calc(var(--l, 0) * 90ms), 1.8s); }
+@keyframes line-in { from { opacity: 0; filter: blur(3px); } to { opacity: 1; filter: blur(0); } }
+@media (prefers-reduced-motion: reduce) { .reflection-content .reveal .w, .reflection-content .reveal .dc { opacity: 1; animation: none; } }

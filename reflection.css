@@ -118,3 +118,21 @@ body.hand-mode .reflection-end .signoff { font-weight: 600; font-size: 36px; }
   animation: line-in .6s ease-out both; animation-delay: min(calc(var(--l, 0) * 90ms), 1.8s); }
 @keyframes line-in { from { opacity: 0; filter: blur(3px); } to { opacity: 1; filter: blur(0); } }
 @media (prefers-reduced-motion: reduce) { .reflection-content .reveal .w, .reflection-content .reveal .dc { opacity: 1; animation: none; } }
+
+/* =====================================================================
+   INLINE PHOTOS — photo2 in the middle of the passage, photo3 at the end on the right
+   Header keys (optional):  photo2: images/reflections/a.jpg   photo2-caption: ...   photo2-alt: ...
+                            photo3: images/reflections/b.jpg   photo3-caption: ...   photo3-alt: ...
+   ===================================================================== */
+.snap { position: relative; margin: 2.6em auto; width: min(250px, 66%); padding: 9px 9px 0; background: #fbf7ef;
+  transform: translateY(16px) rotate(var(--tilt, -4deg)); opacity: 0;
+  box-shadow: 0 18px 34px -16px rgba(15,48,51,.55), 0 2px 5px rgba(15,48,51,.22);
+  transition: opacity 1s ease, transform 1s ease; }
+.snap.in { opacity: 1; transform: rotate(var(--tilt, -4deg)); }
+.snap.in:hover { transform: rotate(calc(var(--tilt, -4deg) * .35)) scale(1.02); }
+.snap img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; filter: saturate(.9) sepia(.1); }
+.snap figcaption { min-height: 32px; padding: 8px 4px 10px; font-family: var(--hand); font-size: 21px; line-height: 1; text-align: center; color: #3a5757; }
+.snap .tape { position: absolute; top: -12px; left: 50%; width: 62px; height: 24px; transform: translateX(-50%) rotate(-7deg); background: rgba(227,185,133,.6); box-shadow: 0 1px 2px rgba(0,0,0,.18); }
+.snap-mid { --tilt: -4deg; }
+.snap-end { --tilt: 6deg; width: min(220px, 58%); margin: 2.4em -6px 0 auto; }
+@media (prefers-reduced-motion: reduce) { .snap { opacity: 1; transform: rotate(var(--tilt, -4deg)); transition: none; } }

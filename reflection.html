@@ -8,7 +8,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Caveat:wght@500;600&family=Kalam:wght@300;400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="ocean.css">
 
   
@@ -24,6 +24,11 @@
   <main>
     <section class="reflection-hero">
       <div class="ripples" aria-hidden="true"></div>
+      <figure class="polaroid" id="reflection-polaroid" hidden>
+        <span class="tape" aria-hidden="true"></span>
+        <img id="polaroid-img" alt="" width="200" height="200" decoding="async">
+        <figcaption id="polaroid-caption"></figcaption>
+      </figure>
       <p class="eyebrow">A reflection from Ocean</p>
       <h1 id="reflection-title">A moment of reflection</h1>
       <p class="reflection-summary" id="reflection-summary"></p>
@@ -303,14 +308,30 @@
           dateElement.textContent = isNaN(d) ? metadata.date : d.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
         }
 
-        if (metadata.image &&
-            (/^https?:\/\//i.test(metadata.image) || !/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(metadata.image))) {
-          imageElement.src = metadata.image;
+        const okPath = p => p && (/^https?:\/\//i.test(p) || !/^([a-z][a-z0-9+.-]*:|\/\/)/i.test(p));
+        const photo = okPath(metadata.photo) ? metadata.photo : null;
+        const art = okPath(metadata.image) ? metadata.image : null;
+        const littleSrc = photo || art;
+        if (littleSrc) {
+          const pol = document.getElementById("reflection-polaroid");
+          const pimg = document.getElementById("polaroid-img");
+          const hero = document.querySelector(".reflection-hero");
+          pimg.onerror = () => { pol.hidden = true; hero.classList.remove("has-polaroid"); };
+          pimg.src = littleSrc;
+          pimg.alt = metadata["photo-alt"] || "";
+          document.getElementById("polaroid-caption").textContent = metadata["photo-caption"] || "";
+          pol.hidden = false;
+          hero.classList.add("has-polaroid");
+        }
+        // the big arched image appears when a separate little photo is set; otherwise the little photo is the image
+        if (photo && art) {
+          imageElement.src = art;
           imageElement.alt = title;
           imageElement.hidden = false;
         }
 
         if (metadata.summary) summaryElement.textContent = metadata.summary;
+        if (String(metadata.font || "").toLowerCase() !== "serif") document.body.classList.add("hand-mode");
         if (String(metadata.style || "").toLowerCase() === "poem") contentElement.classList.add("is-poem");
 
         renderMarkdown(body);

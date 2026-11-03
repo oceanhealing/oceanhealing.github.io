@@ -182,6 +182,64 @@
       parent.append(document.createTextNode(text.slice(lastIndex)));
     }
 
+    // Drop cap: a real element, so it can arrive together with the first line.
+    function dropCap(root) {
+      if (root.classList.contains("is-poem")) return;
+      const first = root.firstElementChild;
+      if (!first || first.tagName !== "P") return;
+      const walker = document.createTreeWalker(first, NodeFilter.SHOW_TEXT);
+      const node = walker.nextNode();
+      if (!node) return;
+      const m = node.nodeValue.match(/^(\s*)(\S)([\s\S]*)$/);
+      if (!m) return;
+      const dc = document.createElement("span");
+      dc.className = "dc";
+      dc.textContent = m[2];
+      node.replaceWith(dc, document.createTextNode(m[3]));
+    }
+
+    // Each visual line fades in just after the one above it, when the paragraph scrolls into view.
+    function revealByLines(root) {
+      const blocks = [...root.querySelectorAll("p, li, h2, h3")];
+      blocks.forEach(block => {
+        const walker = document.createTreeWalker(block, NodeFilter.SHOW_TEXT);
+        const texts = [];
+        while (walker.nextNode()) texts.push(walker.currentNode);
+        texts.forEach(t => {
+          if (!t.nodeValue.trim()) return;
+          const frag = document.createDocumentFragment();
+          t.nodeValue.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { frag.append(part); return; }
+            const w = document.createElement("span");
+            w.className = "w";
+            w.textContent = part;
+            frag.append(w);
+          });
+          t.replaceWith(frag);
+        });
+        block.classList.add("reveal");
+      });
+
+      const group = () => blocks.forEach(block => {
+        let line = -1, lastTop = -9999;
+        block.querySelectorAll(".dc, .w").forEach(w => {
+          const top = w.getBoundingClientRect().top;
+          if (Math.abs(top - lastTop) > 6) { line++; lastTop = top; }
+          w.style.setProperty("--l", line);
+        });
+      });
+      group();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(group);
+      let timer;
+      window.addEventListener("resize", () => { clearTimeout(timer); timer = setTimeout(group, 200); });
+
+      const io = new IntersectionObserver((entries, o) => entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add("go"); o.unobserve(e.target); }
+      }), { threshold: 0.1 });
+      blocks.forEach(b => io.observe(b));
+    }
+
     function renderMarkdown(markdown) {
       contentElement.replaceChildren();
 
@@ -331,19 +389,17 @@
         }
 
         if (metadata.summary) summaryElement.textContent = metadata.summary;
-        if (String(metadata.font || "").toLowerCase() !== "serif") document.body.classList.add("hand-mode");
+        const fontChoice = String(metadata.font || "").toLowerCase();
+        if (fontChoice !== "serif") document.body.classList.add("hand-mode");   // handwritten title, date, sign-off
+        if (fontChoice === "hand") document.body.classList.add("hand-body");     // handwritten paragraphs too
         if (String(metadata.style || "").toLowerCase() === "poem") contentElement.classList.add("is-poem");
 
         renderMarkdown(body);
 
         endElement.hidden = false;
+        dropCap(contentElement);
         const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-        if ("IntersectionObserver" in window && !calm) {
-          const io = new IntersectionObserver((entries, o) => entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add("in"); o.unobserve(e.target); }
-          }), { threshold: 0.12 });
-          [...contentElement.children].forEach(el => { el.classList.add("fade"); io.observe(el); });
-        }
+        if ("IntersectionObserver" in window && !calm) revealByLines(contentElement);
 
         const topics = Array.isArray(metadata.topics)
           ? metadata.topics

@@ -8,28 +8,34 @@
   if (!boxes.length) return;
 
   const parse = text => {
-    const m = text.replace(/\r/g, '').match(/^---\n([\s\S]*?)\n---\n?/);
+    text = text.replace(/^\uFEFF/, '').replace(/\r/g, '').replace(/^\s*\n/, '');
+    const m = text.match(/^---\n([\s\S]*?)\n---\s*(\n|$)/);
     if (!m) return null;
-    const meta = {};
-    m[1].split('\n').forEach(line => {
-      const i = line.indexOf(':');
-      if (i < 1) return;
-      let v = line.slice(i + 1).trim();
-      v = v.startsWith('[') && v.endsWith(']')
-        ? v.slice(1, -1).split(',').map(s => s.trim().replace(/^["']|["']$/g, '')).filter(Boolean)
-        : v.replace(/^["']|["']$/g, '');
-      meta[line.slice(0, i).trim()] = v;
-    });
+    const meta = {}, lines = m[1].split('\n');
+    const clean = s => s.trim().replace(/^["']|["']$/g, '');
+    for (let n = 0; n < lines.length; n++) {
+      const i = lines[n].indexOf(':');
+      if (i < 1 || /^\s/.test(lines[n])) continue;
+      const key = lines[n].slice(0, i).trim();
+      let v = lines[n].slice(i + 1).trim();
+      if (v === '') {                       // multi-line list:  topics:\n  - healing
+        const items = [];
+        while (n + 1 < lines.length && /^\s*-\s+/.test(lines[n + 1])) items.push(clean(lines[++n].replace(/^\s*-\s+/, '')));
+        meta[key] = items;
+      } else if (v.startsWith('[') && v.endsWith(']')) {
+        meta[key] = v.slice(1, -1).split(',').map(clean).filter(Boolean);
+      } else meta[key] = clean(v);
+    }
     return meta;
   };
 
   // Fetch the index and every file exactly once, however many lists the page has.
-  const load = fetch('reflections/index.json')
+  const load = fetch('reflections/index.json', { cache: 'no-cache' })
     .then(r => { if (!r.ok) throw new Error('index ' + r.status); return r.json(); })
     .then(files => Promise.all(files.map(file =>
       fetch('reflections/' + file)
         .then(r => (r.ok ? r.text() : null))
-        .then(t => { const meta = t && parse(t); return meta && meta.title ? { ...meta, file } : null; })
+        .then(t => { const meta = t && parse(t); if (!meta || !meta.title) console.warn('journal.js: could not read "' + file + '" (file missing, or its --- header / title is not valid)'); return meta && meta.title ? { ...meta, file } : null; })
         .catch(() => null))))
     .then(list => list.filter(Boolean).sort((a, b) => String(b.date).localeCompare(String(a.date))))
     .catch(() => []);  // no server (e.g. opened from disk) or no index: behave as if there are no reflections yet
@@ -83,7 +89,8 @@
   load.then(all => {
     boxes.forEach(box => {
       const topic = box.dataset.journal, limit = Number(box.dataset.limit) || Infinity;
-      const posts = all.filter(p => topic === 'all' || (p.topics || []).includes(topic)).slice(0, limit);
+      const want = topic.toLowerCase().split(',').map(s => s.trim());
+      const posts = all.filter(p => want.includes('all') || [].concat(p.topics || []).some(t => want.includes(String(t).toLowerCase().trim()))).slice(0, limit);
       box.replaceChildren();
       if (posts.length) { posts.forEach(p => box.append(card(p))); return; }
       const section = box.closest('section');

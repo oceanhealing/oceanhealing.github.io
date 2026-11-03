@@ -1,6 +1,6 @@
 ---
-id: let_the_waves
-title: Let The Healing Waves
+id: let-the-waves
+title: Let The Healing Waves move
 date: 2026-11-02
 type: Reflection
 topics: [healing, Emboddiment]

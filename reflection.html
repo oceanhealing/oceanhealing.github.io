@@ -442,8 +442,7 @@
 
         if (metadata.summary) summaryElement.textContent = metadata.summary;
         const fontChoice = String(metadata.font || "").toLowerCase();
-        if (fontChoice !== "serif") document.body.classList.add("hand-mode");   // handwritten title, date, sign-off
-        if (fontChoice === "hand") document.body.classList.add("hand-body");     // handwritten paragraphs too
+        if (fontChoice !== "serif") document.body.classList.add("hand-mode", "hand-body");   // handwriting everywhere by default; "font: serif" turns it off
         if (String(metadata.style || "").toLowerCase() === "poem") contentElement.classList.add("is-poem");
 
         renderMarkdown(body);

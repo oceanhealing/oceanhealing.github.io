@@ -71,8 +71,8 @@ body { background-color: var(--cream); }
 @media (max-width: 600px) { .reflection-image { max-height: 320px; } }
 
 /* =====================================================================
-   HANDWRITING ACCENTS (default): title, date, sign-off in Caveat. Body text is the serif.
-   Header options:  font: hand  = handwritten paragraphs too   font: serif  = no handwriting at all
+   HANDWRITING (default): title, date, sign-off in Caveat; paragraphs in Kalam.
+   Handwriting is the default everywhere on reflections. Header option:  font: serif  = serif text and title for that one reflection
    Title + labels: Caveat · Paragraphs: Kalam (a natural pen hand)
    ===================================================================== */
 body.hand-mode .reflection-hero h1 { font-family: "Caveat", "Segoe Script", cursive; font-style: normal; font-weight: 600;
